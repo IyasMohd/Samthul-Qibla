@@ -1,5 +1,6 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:samthul_qibla/functions.dart';
 
 class ScreenHome extends StatelessWidget {
   ScreenHome({super.key});
@@ -52,6 +53,7 @@ class ScreenHome extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextFormField(
+                  textAlign: TextAlign.right,
                   controller: thoolulbaladController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -74,9 +76,11 @@ class ScreenHome extends StatelessWidget {
             ),
             ElevatedButton.icon(
               onPressed: () {
-                final thoolint = double.parse(thoolulbaladController.text);
-                print('$thoolint');
-                splitThoolAndAral(thoolint);
+                // final thoolint = double.parse(thoolulbaladController.text);
+                // splitThoolAndAral(thoolint);
+
+                
+                
               },
               icon: const Icon(Icons.navigation_rounded),
               label: Text(result),

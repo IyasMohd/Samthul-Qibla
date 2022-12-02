@@ -1,4 +1,4 @@
-# samthul_qibla
+# Samthul_Qibla
 
 A new Flutter project.
 
