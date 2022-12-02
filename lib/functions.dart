@@ -1,7 +1,7 @@
 import 'dart:math';
 
-
-double samthulQibla(double aralulBalad, double araluMakka, double thoolulBalad) {
+double samthulQibla(
+    double aralulBalad, double araluMakka, double thoolulBalad) {
   // بعد القطر
   final jaibulAral = sin(aralulBalad * (pi / 180.0));
   final jaibulMail = sin(araluMakka * (pi / 180.0));
@@ -70,19 +70,14 @@ double samthulQibla(double aralulBalad, double araluMakka, double thoolulBalad) 
   return qousuSamth;
 }
 
-
-
-
-
-
-
-void splitThoolAndAral(double thoolOrAral) {
+String splitThoolAndAral(double thoolOrAral) {
   final daraja = thoolOrAral.toInt();
   final darajaAfterDecimal = thoolOrAral - daraja;
   final daqeeqa = darajaAfterDecimal * 60;
   final daqeeqaRounded = daqeeqa.toInt();
   final thaniya = daqeeqa - daqeeqaRounded;
   final thaniyaCalculated = thaniya * 60;
+  return '$daraja,$daqeeqaRounded,$thaniyaCalculated';
 }
 
 double thamamuAralulbalad(double aralulBalad) {

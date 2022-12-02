@@ -1,11 +1,16 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:samthul_qibla/functions.dart';
 
-class ScreenHome extends StatelessWidget {
-  ScreenHome({super.key});
+class ScreenHome extends StatefulWidget {
+  const ScreenHome({super.key});
 
+  @override
+  State<ScreenHome> createState() => _ScreenHomeState();
+}
+
+class _ScreenHomeState extends State<ScreenHome> {
   final aralulbaladController = TextEditingController();
+
   final thoolulbaladController = TextEditingController();
 
   String result = 'سمت القبلة';
@@ -76,14 +81,19 @@ class ScreenHome extends StatelessWidget {
             ),
             ElevatedButton.icon(
               onPressed: () {
-                // final thoolint = double.parse(thoolulbaladController.text);
-                // splitThoolAndAral(thoolint);
+                const araluMakka = 21.41666667;
+                final aralulBalad = double.parse(aralulbaladController.text);
+                final thoolulBalad = double.parse(thoolulbaladController.text);
 
-                
-                
+                final samthInDegree =
+                    samthulQibla(aralulBalad, araluMakka, thoolulBalad);
+                final samthString = splitThoolAndAral(samthInDegree);
+                setState(() {
+                  result = samthString;
+                });
               },
               icon: const Icon(Icons.navigation_rounded),
-              label: Text(result),
+              label: const Text('Get Result'),
             )
           ],
         ),
