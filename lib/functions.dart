@@ -5,5 +5,5 @@ void splitThoolAndAral(double thoolOrAral) {
   final daqeeqaRounded = daqeeqa.toInt();
   final thaniya = daqeeqa - daqeeqaRounded;
   final thaniyaCalculated = thaniya * 60;
-  print('$daraja,$daqeeqaRounded,$thaniyaCalculated ');
+  
 }
