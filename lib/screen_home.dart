@@ -81,13 +81,18 @@ class _ScreenHomeState extends State<ScreenHome> {
             ),
             ElevatedButton.icon(
               onPressed: () {
-                const araluMakka = 21.41666667;
-                final aralulBalad = double.parse(aralulbaladController.text);
-                final thoolulBalad = double.parse(thoolulbaladController.text);
+                final aralulBalad = aralulbaladController.text;
+                final thoolulBalad = thoolulbaladController.text;
 
-                final samthInDegree =
-                    samthulQibla(aralulBalad, araluMakka, thoolulBalad);
-                final samthString = splitThoolAndAral(samthInDegree);
+                final aralulBaladDecimal = latlongconvertToDecimal(aralulBalad);
+                final thoolulBaladDecimal =
+                    latlongconvertToDecimal(thoolulBalad);
+
+                const araluMakka = 21.41666667;
+
+                final samthInDegree = samthulQibla(
+                    aralulBaladDecimal, araluMakka, thoolulBaladDecimal);
+                final samthString = convertDecimalTolatlong(samthInDegree);
                 setState(() {
                   result = samthString;
                 });

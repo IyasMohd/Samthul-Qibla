@@ -70,14 +70,36 @@ double samthulQibla(
   return qousuSamth;
 }
 
-String splitThoolAndAral(double thoolOrAral) {
+double latlongconvertToDecimal(String thoolOrAral) {
+  final darajaBeforConversion = thoolOrAral.split('°')[0];
+  final daraja = int.parse(darajaBeforConversion);
+
+  final afterDaraja = thoolOrAral.split('°')[1];
+  final daqeeqaBeforeConversion = afterDaraja.split("'")[0];
+  final daqeeqaAfterConversion = int.parse(daqeeqaBeforeConversion);
+  final daqeeqa = daqeeqaAfterConversion / 60;
+
+  final afterDaqeeqa = afterDaraja.split("'")[1];
+  final thaniyaBeforConversion = afterDaqeeqa.split('"')[0];
+  final thaniyaAfterConversion = double.parse(thaniyaBeforConversion);
+  final thaniya = thaniyaAfterConversion / 3600;
+
+  final darajaDaqeeqaThaniya = daraja + daqeeqa + thaniya;
+
+  return darajaDaqeeqaThaniya;
+}
+
+String convertDecimalTolatlong(double thoolOrAral) {
   final daraja = thoolOrAral.toInt();
+
   final darajaAfterDecimal = thoolOrAral - daraja;
   final daqeeqa = darajaAfterDecimal * 60;
   final daqeeqaRounded = daqeeqa.toInt();
   final thaniya = daqeeqa - daqeeqaRounded;
   final thaniyaCalculated = thaniya * 60;
-  return '$daraja,$daqeeqaRounded,$thaniyaCalculated';
+  final thaniyaRounded = double.parse(thaniyaCalculated.toStringAsFixed(3));
+
+  return "$daraja° $daqeeqaRounded' $thaniyaRounded''";
 }
 
 double thamamuAralulbalad(double aralulBalad) {
