@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:samthul_qibla/functions.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:samthul_qibla/widgets/samth_text_form.dart';
+import 'package:samthul_qibla/widgets/samth_toggle_buttons.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -9,99 +11,263 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-  final aralulbaladController = TextEditingController();
+  //Aral Controllers
 
-  final thoolulbaladController = TextEditingController();
+  final aralDarajaController = TextEditingController();
+
+  final aralDaqeeqaController = TextEditingController();
+
+  final aralThaniyaController = TextEditingController();
+
+  //Thool Controllers
+
+  final thoolDarajaController = TextEditingController();
+
+  final thoolDaqeeqaController = TextEditingController();
+
+  final thoolThaniyaController = TextEditingController();
+
+  //Keys for validation
+
+  final aralformKey = GlobalKey<FormState>();
+
+  final thoolformKey = GlobalKey<FormState>();
 
   String result = 'سمت القبلة';
-
+  List<bool> isSelected = [true, false];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'سمت القبلة',
-          style: TextStyle(
-              fontFamily: 'Sakkal Majalla',
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey, borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  cursorColor: Colors.white,
-                  controller: aralulbaladController,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'عرض البلد',
-                    fillColor: Colors.grey,
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: Stack(children: [
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: ExactAssetImage("lib/assets/images/kaaba.jpg"),
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.8),
+          ),
+          Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 25),
+                  child: Text(
+                    'سمت القبلة',
+                    style: GoogleFonts.notoKufiArabic(
+                      color: Colors.amber,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey, borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  textAlign: TextAlign.right,
-                  controller: thoolulbaladController,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'طول البلد',
-                    fillColor: Colors.grey,
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 50, bottom: 0.5, left: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.location_on_sharp,
+                        color: Colors.red,
+                      ),
+                      Text(
+                        'Lattitude',
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      bottom: 20, top: 10, left: 20, right: 20),
+                  child: Form(
+                    key: aralformKey,
+                    child: Row(
+                      children: [
+                        SamthTextFormField(
+                          validatorFunction: (degree) {
+                            return '';
+                          },
+                          hintText: 'Degree',
+                          suffixText: '°',
+                          controller: aralDarajaController,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SamthTextFormField(
+                          validatorFunction: (minutes) {
+                            return '';
+                          },
+                          hintText: 'Minutes',
+                          suffixText: "'",
+                          controller: aralDaqeeqaController,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SamthTextFormField(
+                          validatorFunction: (seconds) {
+                            return '';
+                          },
+                          hintText: 'Seconds',
+                          suffixText: '"',
+                          controller: aralThaniyaController,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SamthToggleButtons(
+                          boolList: isSelected,
+                          firstDirection: 'S',
+                          secondDirection: 'N',
+                          toggleOnPressed: (newIndex) {
+                            setState(
+                              () {
+                                for (int index = 0;
+                                    index < isSelected.length;
+                                    index++) {
+                                  // checking for the index value
+                                  if (index == newIndex) {
+                                    // one button is always set to true
+                                    isSelected[index] = true;
+                                  } else {
+                                    // other two will be set to false and not selected
+                                    isSelected[index] = false;
+                                  }
+                                }
+                              },
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 20, bottom: 0.5, left: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.location_on_sharp,
+                        color: Colors.red,
+                      ),
+                      Text(
+                        'Longitude',
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      bottom: 20, top: 10, left: 20, right: 20),
+                  child: Form(
+                    key: thoolformKey,
+                    child: Row(
+                      children: [
+                        SamthTextFormField(
+                          validatorFunction: (degree) {
+                            return '';
+                          },
+                          hintText: 'Degree',
+                          suffixText: '°',
+                          controller: thoolDarajaController,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SamthTextFormField(
+                          validatorFunction: (minutes) {
+                            return '';
+                          },
+                          hintText: 'Minutes',
+                          suffixText: "'",
+                          controller: thoolDaqeeqaController,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SamthTextFormField(
+                          validatorFunction: (seconds) {
+                            return '';
+                          },
+                          hintText: 'Seconds',
+                          suffixText: '"',
+                          controller: thoolThaniyaController,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SamthToggleButtons(
+                          boolList: isSelected,
+                          firstDirection: 'E',
+                          secondDirection: 'W',
+                          toggleOnPressed: (newIndex) {
+                            setState(
+                              () {
+                                for (int index = 0;
+                                    index < isSelected.length;
+                                    index++) {
+                                  // checking for the index value
+                                  if (index == newIndex) {
+                                    // one button is always set to true
+                                    isSelected[index] = true;
+                                  } else {
+                                    // other two will be set to false and not selected
+                                    isSelected[index] = false;
+                                  }
+                                }
+                              },
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 20, right: 20),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white.withOpacity(0.5),
+                            fixedSize: const Size(400, 40),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        onPressed: () {},
+                        child: Text(
+                          'Get Samth',
+                          style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(color: Colors.black)),
+                        ))),
+              ],
             ),
-            const SizedBox(
-              height: 50,
-            ),
-            Text(
-              result,
-              style: const TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                final aralulBalad = aralulbaladController.text;
-                final thoolulBalad = thoolulbaladController.text;
-
-                final aralulBaladDecimal = latlongconvertToDecimal(aralulBalad);
-                final thoolulBaladDecimal =
-                    latlongconvertToDecimal(thoolulBalad);
-
-                const araluMakka = 21.41666667;
-
-                final samthInDegree = samthulQibla(
-                    aralulBaladDecimal, araluMakka, thoolulBaladDecimal);
-                final samthString = convertDecimalTolatlong(samthInDegree);
-                setState(() {
-                  result = samthString;
-                });
-              },
-              icon: const Icon(Icons.navigation_rounded),
-              label: const Text('Get Result'),
-            )
-          ],
-        ),
+          )
+        ]),
       ),
     );
   }

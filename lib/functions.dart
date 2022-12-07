@@ -70,21 +70,18 @@ double samthulQibla(
   return qousuSamth;
 }
 
-double latlongconvertToDecimal(String thoolOrAral) {
-  final darajaBeforConversion = thoolOrAral.split('°')[0];
-  final daraja = int.parse(darajaBeforConversion);
+double latlongconvertToDecimal(String daraja,String daqeeqa, String thaniya) {
+  final darajaConverted = int.parse(daraja);
 
-  final afterDaraja = thoolOrAral.split('°')[1];
-  final daqeeqaBeforeConversion = afterDaraja.split("'")[0];
-  final daqeeqaAfterConversion = int.parse(daqeeqaBeforeConversion);
-  final daqeeqa = daqeeqaAfterConversion / 60;
+  
+  final daqeeqaInt = int.parse(daqeeqa);
+  final daqeeqaDecimal = daqeeqaInt / 60;
 
-  final afterDaqeeqa = afterDaraja.split("'")[1];
-  final thaniyaBeforConversion = afterDaqeeqa.split('"')[0];
-  final thaniyaAfterConversion = double.parse(thaniyaBeforConversion);
-  final thaniya = thaniyaAfterConversion / 3600;
 
-  final darajaDaqeeqaThaniya = daraja + daqeeqa + thaniya;
+  final thaniyaInt = double.parse(thaniya);
+  final thaniyaDecimal = thaniyaInt / 3600;
+
+  final darajaDaqeeqaThaniya = darajaConverted + daqeeqaDecimal + thaniyaDecimal;
 
   return darajaDaqeeqaThaniya;
 }
@@ -97,7 +94,7 @@ String convertDecimalTolatlong(double thoolOrAral) {
   final daqeeqaRounded = daqeeqa.toInt();
   final thaniya = daqeeqa - daqeeqaRounded;
   final thaniyaCalculated = thaniya * 60;
-  final thaniyaRounded = double.parse(thaniyaCalculated.toStringAsFixed(3));
+  final thaniyaRounded = double.parse(thaniyaCalculated.toStringAsFixed(0));
 
   return "$daraja° $daqeeqaRounded' $thaniyaRounded''";
 }
