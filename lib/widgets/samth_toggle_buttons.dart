@@ -6,7 +6,8 @@ class SamthToggleButtons extends StatelessWidget {
     super.key,
     required this.firstDirection,
     required this.secondDirection,
-    required this.toggleOnPressed, required this.boolList,
+    required this.toggleOnPressed,
+    required this.boolList,
   });
 
   final String firstDirection;
@@ -41,7 +42,7 @@ class SamthToggleButtons extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 45, minWidth: 40),
       children: [
         Text(
-        firstDirection,
+          firstDirection,
           style: GoogleFonts.poppins(
             textStyle: const TextStyle(fontSize: 20),
             fontWeight: FontWeight.bold,
