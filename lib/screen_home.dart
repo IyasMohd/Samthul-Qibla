@@ -64,7 +64,7 @@ class ScreenHome extends StatelessWidget {
                     decoration: const BoxDecoration(
                         color: Colors.lightGreen,
                         borderRadius: BorderRadius.all(Radius.circular(120))),
-                    child: const Icon(Icons.compass_calibration_rounded),
+                    child: const Icon(Icons.directions_rounded),
                   ),
                 ),
                 GestureDetector(

@@ -48,7 +48,7 @@ double samthulQibla(double aralulBalad, double araluMakka, double thoolulBalad,
   final jaibuSsahath = jaibulMail / jaibuThamamulAral;
 
   //تعديل السمت
-  
+
   final thaadeeluSamth =
       thaadeeluSsamth(hissathuSamth, jaibuSsahath, directionNorth);
 
@@ -105,23 +105,48 @@ double thamamuAralulbalad(double aralulBalad) {
 
 double mabainaTholaini(double thoolulBalad, bool directionEast) {
   const thoolMakka = 39.9;
+
   if (directionEast) {
-    if (thoolulBalad >= thoolMakka) {
+    if (thoolulBalad <= thoolMakka) {
+      final mabainaThoolaini = thoolMakka - thoolulBalad;
+      return mabainaThoolaini;
+    } else if (thoolulBalad <= (90 + thoolMakka)) {
       final mabainaThoolaini = thoolulBalad - thoolMakka;
       return mabainaThoolaini;
     } else {
-      final mabainaThoolaini = thoolMakka - thoolulBalad;
+      final mabainaThoolaini = 180 - (thoolulBalad - thoolMakka);
       return mabainaThoolaini;
     }
-  } else if (thoolulBalad <= thoolMakka) {
-    final mabainaThoolaini = thoolulBalad + thoolMakka;
-    return mabainaThoolaini;
   } else {
-    final mabainaThoolaini = 180 - (thoolMakka + thoolulBalad - 180);
-    return mabainaThoolaini;
+    if (thoolulBalad <= (90 - thoolMakka)) {
+      final mabainaThoolaini = thoolulBalad + thoolMakka;
+      return mabainaThoolaini;
+    } else if (thoolulBalad <= (180 - thoolMakka)) {
+      final mabainaThoolaini = 180 - (thoolulBalad + thoolMakka);
+      return mabainaThoolaini;
+    } else {
+      final mabainaThoolaini = thoolulBalad - (180 - thoolMakka);
+      return mabainaThoolaini;
+    }
   }
 }
 
+//   if (directionEast) {
+//     if (thoolulBalad >= thoolMakka) {
+//       final mabainaThoolaini = thoolulBalad - thoolMakka;
+//       return mabainaThoolaini;
+//     } else {
+//       final mabainaThoolaini = thoolMakka - thoolulBalad;
+//       return mabainaThoolaini;
+//     }
+//   } else if (thoolulBalad <= thoolMakka) {
+//     final mabainaThoolaini = thoolulBalad + thoolMakka;
+//     return mabainaThoolaini;
+//   } else {
+//     final mabainaThoolaini = 180 - (thoolMakka + thoolulBalad - 180);
+//     return mabainaThoolaini;
+//   }
+// }
 double jaibuthamamimabainaThoolaini(double mabainathoolaini) {
   final thamamuMabainathoolaini = 90 - mabainathoolaini;
   if (thamamuMabainathoolaini <= 90) {

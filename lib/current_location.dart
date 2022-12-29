@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/functions_current_location.dart';
-import 'package:samthul_qibla/functions_manual.dart';
 
 class CurrentLocation extends StatefulWidget {
   const CurrentLocation({super.key});
@@ -13,6 +11,12 @@ class CurrentLocation extends StatefulWidget {
 
 class _CurrentLocationState extends State<CurrentLocation> {
   String result = 'سمت القبلة';
+
+  String lattitude = '';
+  String longitude = '';
+
+  
+   
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +75,10 @@ class _CurrentLocationState extends State<CurrentLocation> {
                     ],
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(lattitude),
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 20, bottom: 0.5, left: 25),
@@ -94,41 +102,47 @@ class _CurrentLocationState extends State<CurrentLocation> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white.withOpacity(0.5),
-                        fixedSize: const Size(400, 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30))),
-                    onPressed: () async {
-                      final currentLocation = await _getCurrentLocation();
-                      final thoolulbalad =
-                          convertNegativeintoPositive(currentLocation.latitude);
-
-                      final aralulBalad = convertNegativeintoPositive(
-                          currentLocation.longitude);
-                      const araluMakka = 21.41666667;
-                      final thoolDirectionEast =
-                          thoolAralDirection(thoolulbalad);
-                      final aralDirectionNorth =
-                          thoolAralDirection(aralulBalad);
-                      final qausuSsamth = samthulQibla(aralulBalad, araluMakka,
-                          thoolulbalad, thoolDirectionEast, aralDirectionNorth);
-                      final qausuSsamthConverted =
-                          convertDecimalTolatlong(qausuSsamth);
-                      setState(() {
-                        result = qausuSsamthConverted;
-                      });
-                    },
-                    child: Text(
-                      'Get Samth',
-                      style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(color: Colors.black)),
-                    ),
-                  ),
+                const SizedBox(
+                  height: 20,
                 ),
+                Text(longitude),
+
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //         backgroundColor: Colors.white.withOpacity(0.5),
+                //         fixedSize: const Size(400, 50),
+                //         shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.circular(30))),
+                //     onPressed: () async {
+                //       final currentLocation = await _getCurrentLocation();
+                //       final thoolulbalad =
+                //           convertNegativeintoPositive(currentLocation.latitude);
+
+                //       final aralulBalad = convertNegativeintoPositive(
+                //           currentLocation.longitude);
+                //       const araluMakka = 21.41666667;
+                //       final thoolDirectionEast =
+                //           thoolAralDirection(thoolulbalad);
+                //       final aralDirectionNorth =
+                //           thoolAralDirection(aralulBalad);
+                //       final qausuSsamth = samthulQibla(aralulBalad, araluMakka,
+                //           thoolulbalad, thoolDirectionEast, aralDirectionNorth);
+                //       final qausuSsamthConverted =
+                //           convertDecimalTolatlong(qausuSsamth);
+                //       setState(() {
+                //         result = qausuSsamthConverted;
+                //       });
+                //     },
+                //     child: Text(
+                //       'Get Samth',
+                //       style: GoogleFonts.poppins(
+                //           textStyle: const TextStyle(color: Colors.black)),
+                //     ),
+                //   ),
+                // ),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 150),
                   child: Text(
@@ -149,25 +163,5 @@ class _CurrentLocationState extends State<CurrentLocation> {
         ]),
       ),
     );
-  }
-
-  Future<Position> _getCurrentLocation() async {
-    bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!isLocationServiceEnabled) {
-      return Future.error('Location services are disabled');
-    }
-
-    LocationPermission permission = await Geolocator.checkPermission();
-
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location permissions are permenently denied');
-    }
-    return await Geolocator.getCurrentPosition();
   }
 }

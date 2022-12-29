@@ -152,13 +152,15 @@ class _ManualLocationState extends State<ManualLocation> {
                                   if (index == newIndex) {
                                     // one button is always set to true
                                     isSelectedsouthNorth[index] = true;
-                                    if (index == 0) {
-                                      aralDirectionNorth = true;
-                                    }
                                   } else {
                                     // other two will be set to false and not selected
                                     isSelectedsouthNorth[index] = false;
                                   }
+                                }
+                                if (newIndex == 0) {
+                                  aralDirectionNorth = true;
+                                } else {
+                                  aralDirectionNorth = false;
                                 }
                               },
                             );
@@ -245,16 +247,15 @@ class _ManualLocationState extends State<ManualLocation> {
                                   if (index == newIndex) {
                                     // one button is always set to true
                                     isSelectedEastWest[index] = true;
-                                    if (index == 0) {
-                                      thoolDirectionEast = true;
-                                    } else {
-                                      thoolDirectionEast = false;
-                                    }
                                   } else {
                                     // other two will be set to false and not selected
                                     isSelectedEastWest[index] = false;
-                                    thoolDirectionEast = false;
                                   }
+                                }
+                                if (newIndex == 0) {
+                                  thoolDirectionEast = true;
+                                } else {
+                                  thoolDirectionEast = false;
                                 }
                               },
                             );
