@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:samthul_qibla/current_location.dart';
+import 'package:samthul_qibla/functions_current_location.dart';
 import 'package:samthul_qibla/functions_manual.dart';
 import 'package:samthul_qibla/widgets/samth_text_form.dart';
 import 'package:samthul_qibla/widgets/samth_toggle_buttons.dart';
@@ -37,7 +39,6 @@ class _ManualLocationState extends State<ManualLocation> {
   bool thoolDirectionEast = true;
   bool aralDirectionNorth = true;
 
-  String result = 'سمت القبلة';
   List<bool> isSelectedEastWest = [true, false];
   List<bool> isSelectedsouthNorth = [true, false];
 
@@ -260,7 +261,7 @@ class _ManualLocationState extends State<ManualLocation> {
                               },
                             );
                           },
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -274,22 +275,33 @@ class _ManualLocationState extends State<ManualLocation> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30))),
                     onPressed: () {
-                      final thoolulbalad = latlongconvertToDecimal(
-                          thoolDarajaController.text,
-                          thoolDaqeeqaController.text,
-                          thoolThaniyaController.text);
+                      final aralulBalad = latitudeconvertToDecimal(
+                          aralDarajaController.text,
+                          aralDaqeeqaController.text,
+                          aralThaniyaController.text);
 
-                      final aralulBalad = latlongconvertToDecimal(
-                        aralDarajaController.text,
-                        aralDaqeeqaController.text,
-                        aralThaniyaController.text,
+                      final thoolulBalad = longitudeconvertToDecimal(
+                        thoolDarajaController.text,
+                        thoolDaqeeqaController.text,
+                        thoolThaniyaController.text,
+                        thoolDirectionEast,
                       );
                       const araluMakka = 21.41666667;
 
                       final qausuSsamth = samthulQibla(aralulBalad, araluMakka,
-                          thoolulbalad, thoolDirectionEast, aralDirectionNorth);
+                          thoolulBalad, thoolDirectionEast, aralDirectionNorth);
                       final qausuSsamthConverted =
                           convertDecimalTolatlong(qausuSsamth);
+                      longitudeNotifier.value =
+                          "${thoolDarajaController.text}° ${thoolDaqeeqaController.text}' ${thoolThaniyaController.text}''";
+
+                      latitudeNotifier.value =
+                          "${aralDarajaController.text}° ${aralDaqeeqaController.text}' ${aralThaniyaController.text}''";
+
+                      resultNotifier.value = qausuSsamthConverted;
+                      longitudeNotifier.notifyListeners();
+                      latitudeNotifier.notifyListeners();
+                      resultNotifier.notifyListeners();
                       setState(() {
                         result = qausuSsamthConverted;
                       });
@@ -303,15 +315,21 @@ class _ManualLocationState extends State<ManualLocation> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 150),
-                  child: Text(
-                    result,
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                  child: ValueListenableBuilder(
+                    valueListenable: resultNotifier,
+                    builder: (context, value, child) {
+                      return Text(
+                        resultNotifier.value,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

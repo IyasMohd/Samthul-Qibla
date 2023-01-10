@@ -70,7 +70,7 @@ double samthulQibla(double aralulBalad, double araluMakka, double thoolulBalad,
   return qousuSamth;
 }
 
-double latlongconvertToDecimal(String daraja, String daqeeqa, String thaniya) {
+double latitudeconvertToDecimal(String daraja, String daqeeqa, String thaniya) {
   final darajaConverted = int.parse(daraja);
 
   final daqeeqaInt = int.parse(daqeeqa);
@@ -85,8 +85,30 @@ double latlongconvertToDecimal(String daraja, String daqeeqa, String thaniya) {
   return darajaDaqeeqaThaniya;
 }
 
+double longitudeconvertToDecimal(
+    String daraja, String daqeeqa, String thaniya, bool thoolDirection) {
+  final darajaConverted = int.parse(daraja);
+
+  final daqeeqaInt = int.parse(daqeeqa);
+  final daqeeqaDecimal = daqeeqaInt / 60;
+
+  final thaniyaInt = double.parse(thaniya);
+  final thaniyaDecimal = thaniyaInt / 3600;
+
+  if (thoolDirection) {
+    final darajaDaqeeqaThaniya =
+        darajaConverted + daqeeqaDecimal + thaniyaDecimal;
+    return darajaDaqeeqaThaniya;
+  } else {
+    final darajaDaqeeqaThaniya =
+        0 - (darajaConverted + daqeeqaDecimal + thaniyaDecimal);
+    return darajaDaqeeqaThaniya;
+  }
+
+}
+
 String convertDecimalTolatlong(double thoolOrAral) {
-  final daraja = thoolOrAral.toInt();
+  final daraja = thoolOrAral.toInt().abs();
 
   final darajaAfterDecimal = thoolOrAral - daraja;
   final daqeeqa = darajaAfterDecimal * 60;

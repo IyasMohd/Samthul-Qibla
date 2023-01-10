@@ -1,5 +1,5 @@
-import 'package:geolocator/geolocator.dart';
-import 'package:samthul_qibla/functions_manual.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:google_maps_webservice/directions.dart';
 
 bool thoolAralDirection(double thoolAralDecimal) {
   if (thoolAralDecimal >= 0) {
@@ -20,36 +20,43 @@ double convertNegativeintoPositive(double coodinate) {
   }
 }
 
-Future<Position> _getCurrentLocation() async {
-  bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
-  if (!isLocationServiceEnabled) {
-    return Future.error('Location services are disabled');
-  }
+String convertLatDecimalTolatlong(double thoolOrAral) {
+  final daraja = thoolOrAral.toInt();
+  final darajaToReturn = (daraja).abs();
+  final darajaAfterDecimal = thoolOrAral - daraja;
+  final daqeeqa = darajaAfterDecimal * 60;
+  final daqeeqaRounded = daqeeqa.toInt();
+  final daqeeqaToReturn = (daqeeqaRounded).abs();
 
-  LocationPermission permission = await Geolocator.checkPermission();
+  final thaniya = daqeeqa - daqeeqaRounded;
+  final thaniyaCalculated = thaniya * 60;
+  final thaniyaRounded = double.parse(thaniyaCalculated.toStringAsFixed(0));
+  final thaniyaToReturn = (thaniyaRounded).abs();
 
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return Future.error('Location permissions are denied');
-    }
-  }
-  if (permission == LocationPermission.deniedForever) {
-    return Future.error('Location permissions are permenently denied');
-  }
-  return await Geolocator.getCurrentPosition();
+  final direction = daraja > 0 ? "N" : "S";
+  return "$darajaToReturn° $daqeeqaToReturn' $thaniyaToReturn''\t $direction";
 }
 
-Future<String> initialCurrentLocation() async {
-  final currentLocation = await _getCurrentLocation();
-  final thoolulbalad = convertNegativeintoPositive(currentLocation.latitude);
+String convertLongDecimalTolatlong(double thoolOrAral) {
+  final daraja = thoolOrAral.toInt();
+  final darajaToReturn = (daraja).abs();
 
-  final aralulBalad = convertNegativeintoPositive(currentLocation.longitude);
-  const araluMakka = 21.41666667;
-  final thoolDirectionEast = thoolAralDirection(thoolulbalad);
-  final aralDirectionNorth = thoolAralDirection(aralulBalad);
-  final qausuSsamth = samthulQibla(aralulBalad, araluMakka, thoolulbalad,
-      thoolDirectionEast, aralDirectionNorth);
-  final qausuSsamthConverted = convertDecimalTolatlong(qausuSsamth);
-  return qausuSsamthConverted;
+  final darajaAfterDecimal = thoolOrAral - daraja;
+  final daqeeqa = darajaAfterDecimal * 60;
+  final daqeeqaRounded = daqeeqa.toInt();
+  final daqeeqaToReturn = (daqeeqaRounded).abs();
+  final thaniya = daqeeqa - daqeeqaRounded;
+  final thaniyaCalculated = thaniya * 60;
+  final thaniyaRounded = double.parse(thaniyaCalculated.toStringAsFixed(0));
+  final thaniyaToReturn = (thaniyaRounded).abs();
+
+  final direction = daraja > 0 ? "E" : "W";
+  return "$darajaToReturn° $daqeeqaToReturn' $thaniyaToReturn''\t $direction";
 }
+
+ValueNotifier<String> resultNotifier = ValueNotifier('سمت القبلة');
+
+ValueNotifier<String> longitudeNotifier = ValueNotifier("0° 0' 0''");
+ValueNotifier<String> latitudeNotifier = ValueNotifier("0° 0' 0''");
+
+ValueNotifier<String> addressNotifier = ValueNotifier('Address');
