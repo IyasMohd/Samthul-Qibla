@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:samthul_qibla/current_location.dart';
-import 'package:samthul_qibla/functions_current_location.dart';
-import 'package:samthul_qibla/functions_manual.dart';
-import 'package:samthul_qibla/widgets/samth_text_form.dart';
-import 'package:samthul_qibla/widgets/samth_toggle_buttons.dart';
+import 'package:samthul_qibla/presentation/current_location/current_location.dart';
+import 'package:samthul_qibla/presentation/current_location/functions_current_location.dart';
+import 'package:samthul_qibla/presentation/manual_location/functions_manual.dart';
+import 'package:samthul_qibla/presentation/manual_location/widgets/samth_text_form.dart';
+import 'package:samthul_qibla/presentation/manual_location/widgets/samth_toggle_buttons.dart';
+
 
 class ManualLocation extends StatefulWidget {
   const ManualLocation({super.key});
