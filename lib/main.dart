@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:samthul_qibla/application/bloc/current_location_bloc.dart';
+import 'package:samthul_qibla/application/current_location/current_location_bloc.dart';
+import 'package:samthul_qibla/application/location_map/location_map_bloc.dart';
 import 'package:samthul_qibla/domain/core/di/injectable.dart';
 import 'package:samthul_qibla/main_page.dart';
 
@@ -18,8 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<CurrentLocationBloc>(),
+    return MultiBlocProvider(
+      providers: [   BlocProvider (create:  (context) => getIt<CurrentLocationBloc>(), ),
+      BlocProvider (create:  (context) => getIt<LocationMapBloc>(), ),
+      ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Samthul Qibla',

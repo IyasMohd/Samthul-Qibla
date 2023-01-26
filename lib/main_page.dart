@@ -8,11 +8,7 @@ ValueNotifier<int> indexNotifier = ValueNotifier(0);
 class MainPage extends StatelessWidget {
   MainPage({super.key});
 
-  final pageList = [
-    CurrentLocation(),
-     LocationMap(),
-    const ManualLocation()
-  ];
+  final pageList = [CurrentLocation(), LocationMap(), const ManualLocation()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:samthul_qibla/application/bloc/current_location_bloc.dart';
+import 'package:samthul_qibla/application/current_location/current_location_bloc.dart';
 
 String result = 'سمت القبلة';
 
@@ -57,7 +57,7 @@ class CurrentLocation extends StatelessWidget {
                     child: state.isLoading
                         ? const Center(child: CircularProgressIndicator())
                         : state.isError
-                            ? const Center(child: Text('An Error Occured'))
+                            ? const Center(child: Text('An Error Occured',style: TextStyle(color: Colors.white,),),)
                             : Column(
                                 children: [
                                   Padding(
