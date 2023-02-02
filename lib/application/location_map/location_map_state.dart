@@ -6,11 +6,19 @@ class LocationMapState with _$LocationMapState {
     required bool isLoading,
     required bool isError,
     required LocationMapModel value,
+    required AddressModel address,
   }) = _LocationMapState;
   factory LocationMapState.initial() {
     const initialState = LocationMapModel(
-        address: '', longitude: "0° 0' 0''", latittude: "0° 0' 0''");
-    return  const LocationMapState(
-        isLoading: false, isError: false, value: initialState);
+        longitude: "0° 0' 0''",
+        latittude: "0° 0' 0''",
+        samthulQibla: "0° 0' 0''");
+    const initialAddress = AddressModel(address: '');
+    return const LocationMapState(
+      isLoading: false,
+      isError: false,
+      value: initialState,
+      address: initialAddress,
+    );
   }
 }

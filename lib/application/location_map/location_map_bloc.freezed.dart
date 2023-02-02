@@ -169,6 +169,7 @@ mixin _$LocationMapState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   LocationMapModel get value => throw _privateConstructorUsedError;
+  AddressModel get address => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LocationMapStateCopyWith<LocationMapState> get copyWith =>
@@ -181,7 +182,11 @@ abstract class $LocationMapStateCopyWith<$Res> {
           LocationMapState value, $Res Function(LocationMapState) then) =
       _$LocationMapStateCopyWithImpl<$Res, LocationMapState>;
   @useResult
-  $Res call({bool isLoading, bool isError, LocationMapModel value});
+  $Res call(
+      {bool isLoading,
+      bool isError,
+      LocationMapModel value,
+      AddressModel address});
 }
 
 /// @nodoc
@@ -200,6 +205,7 @@ class _$LocationMapStateCopyWithImpl<$Res, $Val extends LocationMapState>
     Object? isLoading = null,
     Object? isError = null,
     Object? value = null,
+    Object? address = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -214,6 +220,10 @@ class _$LocationMapStateCopyWithImpl<$Res, $Val extends LocationMapState>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as LocationMapModel,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as AddressModel,
     ) as $Val);
   }
 }
@@ -226,7 +236,11 @@ abstract class _$$_LocationMapStateCopyWith<$Res>
       __$$_LocationMapStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool isError, LocationMapModel value});
+  $Res call(
+      {bool isLoading,
+      bool isError,
+      LocationMapModel value,
+      AddressModel address});
 }
 
 /// @nodoc
@@ -243,6 +257,7 @@ class __$$_LocationMapStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isError = null,
     Object? value = null,
+    Object? address = null,
   }) {
     return _then(_$_LocationMapState(
       isLoading: null == isLoading
@@ -257,6 +272,10 @@ class __$$_LocationMapStateCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as LocationMapModel,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as AddressModel,
     ));
   }
 }
@@ -265,7 +284,10 @@ class __$$_LocationMapStateCopyWithImpl<$Res>
 
 class _$_LocationMapState implements _LocationMapState {
   const _$_LocationMapState(
-      {required this.isLoading, required this.isError, required this.value});
+      {required this.isLoading,
+      required this.isError,
+      required this.value,
+      required this.address});
 
   @override
   final bool isLoading;
@@ -273,10 +295,12 @@ class _$_LocationMapState implements _LocationMapState {
   final bool isError;
   @override
   final LocationMapModel value;
+  @override
+  final AddressModel address;
 
   @override
   String toString() {
-    return 'LocationMapState(isLoading: $isLoading, isError: $isError, value: $value)';
+    return 'LocationMapState(isLoading: $isLoading, isError: $isError, value: $value, address: $address)';
   }
 
   @override
@@ -287,11 +311,13 @@ class _$_LocationMapState implements _LocationMapState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError, value);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, isError, value, address);
 
   @JsonKey(ignore: true)
   @override
@@ -304,7 +330,8 @@ abstract class _LocationMapState implements LocationMapState {
   const factory _LocationMapState(
       {required final bool isLoading,
       required final bool isError,
-      required final LocationMapModel value}) = _$_LocationMapState;
+      required final LocationMapModel value,
+      required final AddressModel address}) = _$_LocationMapState;
 
   @override
   bool get isLoading;
@@ -312,6 +339,8 @@ abstract class _LocationMapState implements LocationMapState {
   bool get isError;
   @override
   LocationMapModel get value;
+  @override
+  AddressModel get address;
   @override
   @JsonKey(ignore: true)
   _$$_LocationMapStateCopyWith<_$_LocationMapState> get copyWith =>

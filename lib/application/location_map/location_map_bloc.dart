@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:samthul_qibla/domain/core/failure/main_failure.dart';
-import 'package:samthul_qibla/domain/location_map/models/location_map.dart';
+import 'package:samthul_qibla/domain/location_map/models/location_map_model.dart';
 import 'package:samthul_qibla/infrastructure/location_map.dart/location_map_service.dart';
 
 part 'location_map_bloc.freezed.dart';
@@ -36,6 +36,11 @@ class LocationMapBloc extends Bloc<LocationMapEvent, LocationMapState> {
             value: success,
           ),
         ),
+      );
+
+      final AddressModel address = await locationMapService.getAddress();
+      emit(state.copyWith(address: address)
+        
       );
     });
   }

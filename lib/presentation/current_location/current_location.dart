@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/application/current_location/current_location_bloc.dart';
+import 'package:samthul_qibla/core/asset_manager.dart';
+import 'package:samthul_qibla/core/colors/colors.dart';
+import 'package:samthul_qibla/presentation/current_location/widgets/appbar_current_location.dart';
 
 String result = 'سمت القبلة';
 
 class CurrentLocation extends StatelessWidget {
-  CurrentLocation({super.key});
+  CurrentLocation({
+    super.key,
+  });
 
   String lattitude = '';
   String longitude = '';
@@ -26,149 +31,244 @@ class CurrentLocation extends StatelessWidget {
         .add(const CurrentLocationEvent.initialize());
 
     return Scaffold(
+      backgroundColor: backGround,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text('Samthul Qibla'),
-      ),
       body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: ExactAssetImage("lib/assets/images/kaaba.jpg"),
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.black.withOpacity(0.8),
-            ),
-            BlocBuilder<CurrentLocationBloc, CurrentLocationState>(
-              builder: (context, state) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: state.isLoading
-                        ? const Center(child: CircularProgressIndicator())
-                        : state.isError
-                            ? const Center(child: Text('An Error Occured',style: TextStyle(color: Colors.white,),),)
-                            : Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 25),
-                                    child: Text(
-                                      state.value.address,
-                                      style: GoogleFonts.poppins(
-                                        textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 50, bottom: 0.5, left: 25),
-                                    child: Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.location_on_sharp,
-                                          color: Colors.red,
-                                        ),
-                                        Text(
-                                          'Lattitude',
-                                          style: GoogleFonts.poppins(
-                                            textStyle: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    state.value.latittude,
-                                    style: GoogleFonts.poppins(
-                                      textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 60, bottom: 0.5, left: 25),
-                                    child: Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.location_on_sharp,
-                                          color: Colors.red,
-                                        ),
-                                        Text(
-                                          'Longitude',
-                                          style: GoogleFonts.poppins(
-                                            textStyle: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    state.value.longitude,
-                                    style: GoogleFonts.poppins(
-                                      textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 100),
-                                    child: Text(
-                                      state.value.samthulQibla,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.poppins(
-                                        textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 50,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+        child: BlocBuilder<CurrentLocationBloc, CurrentLocationState>(
+          builder: (context, state) {
+            return Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(AssetManager.backGroundImage),
+                        fit: BoxFit.cover),
                   ),
-                );
-              },
-            ),
-          ],
+                ),
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const AppBarCurrentLocation(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    RefreshIndicator(
+                      displacement: 0,
+                      edgeOffset: 0,
+                      backgroundColor: darkblue,
+                      color: Colors.white,
+                      onRefresh: () async {
+                        return BlocProvider.of<CurrentLocationBloc>(context)
+                            .add(const CurrentLocationEvent.initialize());
+                      },
+                      child: SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 20, top: 80),
+                          child: state.isLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                ))
+                              : state.isError
+                                  ? const Center(
+                                      child: Text(
+                                        'An Error Occured',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    )
+                                  : Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 35),
+                                          child: Text(
+                                            state.value.address,
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.poppins(
+                                              textStyle: const TextStyle(
+                                                color: backGround,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Icon(
+                                                Icons.location_on_sharp,
+                                                color: backGround,
+                                                size: 20,
+                                              ),
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                "Latitude :     ${state.value.latittude}",
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                    color: backGround,
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Icon(
+                                                Icons.location_on_sharp,
+                                                color: backGround,
+                                                size: 20,
+                                              ),
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                "Longitude :     ${state.value.longitude}",
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                    color: backGround,
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 240,
+                                        ),
+                                        const Text(
+                                          'QIBLA DIRECTION',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 30,
+                                        ),
+                                        Text(
+                                          state.value.samthulQibla,
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 45,
+                                              fontWeight: FontWeight.w900),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          state.value.direction,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 23),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                      ],
+                                    ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 }
+              
+            
+
+            // Padding(
+            //                     padding: const EdgeInsets.only(
+            //                         top: 60, bottom: 0.5, left: 25),
+            //                     child: Row(
+            //                       children: [
+            //                         const Icon(
+            //                           Icons.location_on_sharp,
+            //                           color: Colors.red,
+            //                         ),
+            //                         Text(
+            //                           'Longitude',
+            //                           style: GoogleFonts.poppins(
+            //                             textStyle: const TextStyle(
+            //                               color: Colors.white,
+            //                               fontSize: 20,
+            //                               fontWeight: FontWeight.bold,
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                   const SizedBox(
+            //                     height: 20,
+            //                   ),
+            //                   Text(
+            //                     state.value.longitude,
+            //                     style: GoogleFonts.poppins(
+            //                       textStyle: const TextStyle(
+            //                         color: Colors.white,
+            //                         fontSize: 20,
+            //                         fontWeight: FontWeight.bold,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding: const EdgeInsets.only(top: 100),
+            //                     child: Text(
+            //                       state.value.samthulQibla,
+            //                       overflow: TextOverflow.ellipsis,
+            //                       style: GoogleFonts.poppins(
+            //                         textStyle: const TextStyle(
+            //                           color: Colors.white,
+            //                           fontSize: 50,
+            //                           fontWeight: FontWeight.bold,
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ],
+            //               ),
+            //   ),
+            // );
+          
+
 
           
               // Padding(
