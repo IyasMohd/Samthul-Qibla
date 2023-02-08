@@ -96,7 +96,7 @@ class MainPage extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: ((context) => const LocationMap()),
+                      builder: ((context) =>  LocationMap()),
                     ),
                   );
                 },

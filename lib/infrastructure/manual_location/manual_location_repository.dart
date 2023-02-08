@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:injectable/injectable.dart';
+import 'package:samthul_qibla/domain/manual_location/manual_location_service.dart';
 import 'package:samthul_qibla/domain/manual_location/model/manual_location_model.dart';
-import 'package:samthul_qibla/infrastructure/manual_location/manual_location_service.dart';
 
 @LazySingleton(as: ManualLocationService)
 class ManualLocationRepository implements ManualLocationService {
@@ -13,8 +13,8 @@ class ManualLocationRepository implements ManualLocationService {
     bool directionEast,
     bool directionNorth,
   ) {
-    const araluMakka = 21.41666667;
-    const thoolMakka = 39.9;
+    const araluMakka = 21.4225;
+    const thoolMakka = 39.82611111;
 
     final jaibulAral = sin(aralulBalad * (pi / 180.0));
     final jaibulMail = sin(araluMakka * (pi / 180.0));

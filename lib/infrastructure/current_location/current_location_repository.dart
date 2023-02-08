@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:samthul_qibla/domain/core/failure/main_failure.dart';
 import 'package:samthul_qibla/domain/current_location/models/current_location_model.dart';
-import 'package:samthul_qibla/infrastructure/current_location/current_location_service.dart';
+import 'package:samthul_qibla/domain/current_location/current_location_service.dart';
 import 'package:samthul_qibla/presentation/current_location/functions_current_location.dart';
 import 'package:samthul_qibla/presentation/manual_location/functions_manual.dart';
 
@@ -25,7 +25,7 @@ class CurrentLocationRepository implements CurrentLocationService {
 
         final currentLocation = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.best,
-          timeLimit: const Duration(seconds: 5),
+          // timeLimit: const Duration(seconds: 5),
           // forceAndroidLocationManager: true,
         );
 

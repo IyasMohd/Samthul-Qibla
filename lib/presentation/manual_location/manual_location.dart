@@ -6,6 +6,7 @@ import 'package:samthul_qibla/core/asset_manager.dart';
 import 'package:samthul_qibla/core/colors/colors.dart';
 import 'package:samthul_qibla/presentation/current_location/widgets/appbar_current_location.dart';
 import 'package:samthul_qibla/presentation/manual_location/functions_manual.dart';
+import 'package:samthul_qibla/presentation/manual_location/widgets/qibla_direction_widget.dart';
 import 'package:samthul_qibla/presentation/manual_location/widgets/samth_text_form.dart';
 import 'package:samthul_qibla/presentation/manual_location/widgets/samth_toggle_buttons.dart';
 
@@ -37,11 +38,33 @@ class ManualLocation extends StatelessWidget {
 
   final thoolformKey = GlobalKey<FormState>();
 
+  //toggle Button Lists
   List<bool> isSelectedEastWest = [true, false];
   List<bool> isSelectedsouthNorth = [true, false];
 
+  // focus Nodes
+  final fDegreelat = FocusNode();
+  final fMinuteslat = FocusNode();
+  final fSecondslat = FocusNode();
+
+  final fDegreelong = FocusNode();
+  final fMinuteslong = FocusNode();
+  final fSecondslong = FocusNode();
+
+  // toggle button focus Node
+  final fNorthToggle = FocusNode();
+  final fSouthToggle = FocusNode();
+
+  final fEastToggle = FocusNode();
+  final fWestToggle = FocusNode();
+
+  final fButton = FocusNode();
+
   @override
   Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).devicePixelRatio;
+    BlocProvider.of<ManualLocationBloc>(context)
+        .add(const ManualLocationEvent.refreshUI());
     return Scaffold(
       backgroundColor: backGround,
       resizeToAvoidBottomInset: false,
@@ -61,14 +84,38 @@ class ManualLocation extends StatelessWidget {
                   height: 20,
                 ),
                 const AppBarCurrentLocation(),
-                const SizedBox(
-                  height: 10,
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 80),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.location_on_sharp,
+                        color: backGround,
+                        size: 20,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Latitude",
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            letterSpacing: 2,
+                            color: backGround,
+                            fontSize: 23,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 20,
                     right: 20,
-                    top: 80,
+                    top: 10,
                   ),
                   child: Container(
                     color: Colors.transparent,
@@ -78,6 +125,12 @@ class ManualLocation extends StatelessWidget {
                       child: Row(
                         children: [
                           SamthFormField(
+                            textInputAction: TextInputAction.next,
+                            focusNode: fDegreelat,
+                            onFieldSubmitted: (p0) {
+                              fDegreelat.unfocus();
+                              FocusScope.of(context).requestFocus(fMinuteslat);
+                            },
                             labelText: 'Degree',
                             suffixText: '°',
                             controller: aralDarajaController,
@@ -93,6 +146,12 @@ class ManualLocation extends StatelessWidget {
                             width: 10,
                           ),
                           SamthFormField(
+                            textInputAction: TextInputAction.next,
+                            focusNode: fMinuteslat,
+                            onFieldSubmitted: (p0) {
+                              fMinuteslat.unfocus();
+                              FocusScope.of(context).requestFocus(fSecondslat);
+                            },
                             labelText: 'Minutes',
                             suffixText: "'",
                             controller: aralDaqeeqaController,
@@ -109,6 +168,13 @@ class ManualLocation extends StatelessWidget {
                             width: 10,
                           ),
                           SamthFormField(
+                            textInputAction: TextInputAction.next,
+                            focusNode: fSecondslat,
+                            onFieldSubmitted: (p0) {
+                              fSecondslat.unfocus();
+                              FocusScope.of(context).requestFocus(fNorthToggle);
+                              FocusScope.of(context).requestFocus(fSouthToggle);
+                            },
                             labelText: 'Seconds',
                             suffixText: '"',
                             controller: aralThaniyaController,
@@ -126,6 +192,9 @@ class ManualLocation extends StatelessWidget {
                           ),
                           Flexible(
                             child: SamthToggleButtons(
+                              focusNodeList: [fNorthToggle, fSouthToggle],
+                              focusNodeTo: fDegreelong,
+                              focusNodetoggle: fNorthToggle,
                               notifier: aralDirectionNorth,
                               boolList: isSelectedsouthNorth,
                               firstDirection: 'N',
@@ -138,10 +207,37 @@ class ManualLocation extends StatelessWidget {
                   ),
                 ),
                 Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.location_on_sharp,
+                        color: backGround,
+                        size: 20,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Longitude",
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            letterSpacing: 2,
+                            color: backGround,
+                            fontSize: 23,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
                   padding: const EdgeInsets.only(
                     left: 20,
                     right: 20,
-                    top: 80,
+                    top: 10,
                   ),
                   child: Container(
                     color: Colors.transparent,
@@ -151,6 +247,12 @@ class ManualLocation extends StatelessWidget {
                       child: Row(
                         children: [
                           SamthFormField(
+                            textInputAction: TextInputAction.next,
+                            focusNode: fDegreelong,
+                            onFieldSubmitted: (p0) {
+                              fDegreelong.unfocus();
+                              FocusScope.of(context).requestFocus(fMinuteslong);
+                            },
                             labelText: 'Degree',
                             suffixText: '°',
                             controller: thoolDarajaController,
@@ -166,6 +268,12 @@ class ManualLocation extends StatelessWidget {
                             width: 10,
                           ),
                           SamthFormField(
+                            textInputAction: TextInputAction.next,
+                            focusNode: fMinuteslong,
+                            onFieldSubmitted: (p0) {
+                              fMinuteslong.unfocus();
+                              FocusScope.of(context).requestFocus(fSecondslong);
+                            },
                             labelText: 'Minutes',
                             suffixText: "'",
                             controller: thoolDaqeeqaController,
@@ -182,6 +290,13 @@ class ManualLocation extends StatelessWidget {
                             width: 10,
                           ),
                           SamthFormField(
+                            textInputAction: TextInputAction.done,
+                            onFieldSubmitted: (p0) {
+                              fSecondslong.unfocus();
+                              FocusScope.of(context).requestFocus(fWestToggle);
+                              FocusScope.of(context).requestFocus(fEastToggle);
+                            },
+                            focusNode: fSecondslong,
                             labelText: 'Seconds',
                             suffixText: '"',
                             controller: thoolThaniyaController,
@@ -199,6 +314,9 @@ class ManualLocation extends StatelessWidget {
                           ),
                           Flexible(
                             child: SamthToggleButtons(
+                              focusNodeTo: fButton,
+                              focusNodetoggle: fEastToggle,
+                              focusNodeList: [fEastToggle, fWestToggle],
                               notifier: thoolDirectionEast,
                               boolList: isSelectedEastWest,
                               firstDirection: 'E',
@@ -212,44 +330,29 @@ class ManualLocation extends StatelessWidget {
                 ),
                 BlocBuilder<ManualLocationBloc, ManualLocationState>(
                   builder: (context, state) {
-                    return Column(
-                      children: [
-                        const SizedBox(
-                          height: 240,
-                        ),
-                        const Text(
-                          'QIBLA DIRECTION',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          state.value.samthulQibla,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 45,
-                              fontWeight: FontWeight.w900),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          state.value.direction,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 23),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    );
+                    return !state.isDetailsEntered
+                        ? Column(
+                            children: [
+                              const SizedBox(
+                                height: 240,
+                              ),
+                              Text('Enter location details',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                      color: darkblue,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )),
+                            ],
+                          )
+                        : Padding(
+                            padding: EdgeInsets.only(top: size * 70),
+                            child: const QiblaDirectionWidget(),
+                          );
                   },
                 ),
+                const Spacer(),
                 ValueListenableBuilder(
                     valueListenable: thoolDirectionEast,
                     builder: (context, thoolvalue, _) {
@@ -258,13 +361,22 @@ class ManualLocation extends StatelessWidget {
                         builder: (context, value, _) {
                           return Padding(
                             padding: const EdgeInsets.only(
-                                top: 40, left: 20, right: 20),
+                              top: 10,
+                              left: 20,
+                              right: 20,
+                              bottom: 20,
+                            ),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: darkblue.withOpacity(0.5),
-                                  fixedSize: const Size(400, 50),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20))),
+                                backgroundColor: darkblue.withOpacity(0.5),
+                                fixedSize: const Size(
+                                  400,
+                                  50,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                              ),
                               onPressed: () {
                                 final aralulBalad = latitudeconvertToDecimal(
                                   aralDarajaController.text,

@@ -6,12 +6,8 @@ import 'package:samthul_qibla/core/asset_manager.dart';
 import 'package:samthul_qibla/core/colors/colors.dart';
 import 'package:samthul_qibla/presentation/current_location/widgets/appbar_current_location.dart';
 
-String result = 'سمت القبلة';
-
 class CurrentLocation extends StatelessWidget {
-  CurrentLocation({
-    super.key,
-  });
+  CurrentLocation({super.key});
 
   String lattitude = '';
   String longitude = '';
@@ -20,8 +16,6 @@ class CurrentLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // initialCurrentLocation();
-
     // WidgetsBinding.instance.addPersistentFrameCallback((_) {
     //   BlocProvider.of<CurrentLocationBloc>(context)
     //       .add(const CurrentLocationEvent.initialize());
@@ -180,7 +174,7 @@ class CurrentLocation extends StatelessWidget {
                                         Text(
                                           state.value.samthulQibla,
                                           style: const TextStyle(
-                                              color: Colors.black,
+                                              color: kblack,
                                               fontSize: 45,
                                               fontWeight: FontWeight.w900),
                                         ),

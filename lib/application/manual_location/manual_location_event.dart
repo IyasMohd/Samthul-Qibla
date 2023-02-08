@@ -7,5 +7,6 @@ class ManualLocationEvent with _$ManualLocationEvent {
     required double thoolulBalad,
     required bool directionEast,
     required bool directionNorth,
-  }) = _GetSamth;
+  }) = GetSamth;
+  const factory ManualLocationEvent.refreshUI() = RefreshUI;
 }

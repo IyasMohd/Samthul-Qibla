@@ -19,32 +19,38 @@ mixin _$LocationMapEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getSamthFromMap,
+    required TResult Function() refreshUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSamthFromMap,
+    TResult? Function()? refreshUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSamthFromMap,
+    TResult Function()? refreshUI,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetSamthFromMap value) getSamthFromMap,
+    required TResult Function(GetSamthFromMap value) getSamthFromMap,
+    required TResult Function(RefreshUI value) refreshUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetSamthFromMap value)? getSamthFromMap,
+    TResult? Function(GetSamthFromMap value)? getSamthFromMap,
+    TResult? Function(RefreshUI value)? refreshUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetSamthFromMap value)? getSamthFromMap,
+    TResult Function(GetSamthFromMap value)? getSamthFromMap,
+    TResult Function(RefreshUI value)? refreshUI,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,25 +75,25 @@ class _$LocationMapEventCopyWithImpl<$Res, $Val extends LocationMapEvent>
 }
 
 /// @nodoc
-abstract class _$$_GetSamthFromMapCopyWith<$Res> {
-  factory _$$_GetSamthFromMapCopyWith(
-          _$_GetSamthFromMap value, $Res Function(_$_GetSamthFromMap) then) =
-      __$$_GetSamthFromMapCopyWithImpl<$Res>;
+abstract class _$$GetSamthFromMapCopyWith<$Res> {
+  factory _$$GetSamthFromMapCopyWith(
+          _$GetSamthFromMap value, $Res Function(_$GetSamthFromMap) then) =
+      __$$GetSamthFromMapCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GetSamthFromMapCopyWithImpl<$Res>
-    extends _$LocationMapEventCopyWithImpl<$Res, _$_GetSamthFromMap>
-    implements _$$_GetSamthFromMapCopyWith<$Res> {
-  __$$_GetSamthFromMapCopyWithImpl(
-      _$_GetSamthFromMap _value, $Res Function(_$_GetSamthFromMap) _then)
+class __$$GetSamthFromMapCopyWithImpl<$Res>
+    extends _$LocationMapEventCopyWithImpl<$Res, _$GetSamthFromMap>
+    implements _$$GetSamthFromMapCopyWith<$Res> {
+  __$$GetSamthFromMapCopyWithImpl(
+      _$GetSamthFromMap _value, $Res Function(_$GetSamthFromMap) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetSamthFromMap implements _GetSamthFromMap {
-  const _$_GetSamthFromMap();
+class _$GetSamthFromMap implements GetSamthFromMap {
+  const _$GetSamthFromMap();
 
   @override
   String toString() {
@@ -97,7 +103,7 @@ class _$_GetSamthFromMap implements _GetSamthFromMap {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetSamthFromMap);
+        (other.runtimeType == runtimeType && other is _$GetSamthFromMap);
   }
 
   @override
@@ -107,6 +113,7 @@ class _$_GetSamthFromMap implements _GetSamthFromMap {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getSamthFromMap,
+    required TResult Function() refreshUI,
   }) {
     return getSamthFromMap();
   }
@@ -115,6 +122,7 @@ class _$_GetSamthFromMap implements _GetSamthFromMap {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSamthFromMap,
+    TResult? Function()? refreshUI,
   }) {
     return getSamthFromMap?.call();
   }
@@ -123,6 +131,7 @@ class _$_GetSamthFromMap implements _GetSamthFromMap {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSamthFromMap,
+    TResult Function()? refreshUI,
     required TResult orElse(),
   }) {
     if (getSamthFromMap != null) {
@@ -134,7 +143,8 @@ class _$_GetSamthFromMap implements _GetSamthFromMap {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetSamthFromMap value) getSamthFromMap,
+    required TResult Function(GetSamthFromMap value) getSamthFromMap,
+    required TResult Function(RefreshUI value) refreshUI,
   }) {
     return getSamthFromMap(this);
   }
@@ -142,7 +152,8 @@ class _$_GetSamthFromMap implements _GetSamthFromMap {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetSamthFromMap value)? getSamthFromMap,
+    TResult? Function(GetSamthFromMap value)? getSamthFromMap,
+    TResult? Function(RefreshUI value)? refreshUI,
   }) {
     return getSamthFromMap?.call(this);
   }
@@ -150,7 +161,8 @@ class _$_GetSamthFromMap implements _GetSamthFromMap {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetSamthFromMap value)? getSamthFromMap,
+    TResult Function(GetSamthFromMap value)? getSamthFromMap,
+    TResult Function(RefreshUI value)? refreshUI,
     required TResult orElse(),
   }) {
     if (getSamthFromMap != null) {
@@ -160,12 +172,115 @@ class _$_GetSamthFromMap implements _GetSamthFromMap {
   }
 }
 
-abstract class _GetSamthFromMap implements LocationMapEvent {
-  const factory _GetSamthFromMap() = _$_GetSamthFromMap;
+abstract class GetSamthFromMap implements LocationMapEvent {
+  const factory GetSamthFromMap() = _$GetSamthFromMap;
+}
+
+/// @nodoc
+abstract class _$$RefreshUICopyWith<$Res> {
+  factory _$$RefreshUICopyWith(
+          _$RefreshUI value, $Res Function(_$RefreshUI) then) =
+      __$$RefreshUICopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RefreshUICopyWithImpl<$Res>
+    extends _$LocationMapEventCopyWithImpl<$Res, _$RefreshUI>
+    implements _$$RefreshUICopyWith<$Res> {
+  __$$RefreshUICopyWithImpl(
+      _$RefreshUI _value, $Res Function(_$RefreshUI) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RefreshUI implements RefreshUI {
+  const _$RefreshUI();
+
+  @override
+  String toString() {
+    return 'LocationMapEvent.refreshUI()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RefreshUI);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getSamthFromMap,
+    required TResult Function() refreshUI,
+  }) {
+    return refreshUI();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getSamthFromMap,
+    TResult? Function()? refreshUI,
+  }) {
+    return refreshUI?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getSamthFromMap,
+    TResult Function()? refreshUI,
+    required TResult orElse(),
+  }) {
+    if (refreshUI != null) {
+      return refreshUI();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetSamthFromMap value) getSamthFromMap,
+    required TResult Function(RefreshUI value) refreshUI,
+  }) {
+    return refreshUI(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetSamthFromMap value)? getSamthFromMap,
+    TResult? Function(RefreshUI value)? refreshUI,
+  }) {
+    return refreshUI?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetSamthFromMap value)? getSamthFromMap,
+    TResult Function(RefreshUI value)? refreshUI,
+    required TResult orElse(),
+  }) {
+    if (refreshUI != null) {
+      return refreshUI(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RefreshUI implements LocationMapEvent {
+  const factory RefreshUI() = _$RefreshUI;
 }
 
 /// @nodoc
 mixin _$LocationMapState {
+  bool get isLocationSelected => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   LocationMapModel get value => throw _privateConstructorUsedError;
@@ -183,7 +298,8 @@ abstract class $LocationMapStateCopyWith<$Res> {
       _$LocationMapStateCopyWithImpl<$Res, LocationMapState>;
   @useResult
   $Res call(
-      {bool isLoading,
+      {bool isLocationSelected,
+      bool isLoading,
       bool isError,
       LocationMapModel value,
       AddressModel address});
@@ -202,12 +318,17 @@ class _$LocationMapStateCopyWithImpl<$Res, $Val extends LocationMapState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLocationSelected = null,
     Object? isLoading = null,
     Object? isError = null,
     Object? value = null,
     Object? address = null,
   }) {
     return _then(_value.copyWith(
+      isLocationSelected: null == isLocationSelected
+          ? _value.isLocationSelected
+          : isLocationSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -237,7 +358,8 @@ abstract class _$$_LocationMapStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading,
+      {bool isLocationSelected,
+      bool isLoading,
       bool isError,
       LocationMapModel value,
       AddressModel address});
@@ -254,12 +376,17 @@ class __$$_LocationMapStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLocationSelected = null,
     Object? isLoading = null,
     Object? isError = null,
     Object? value = null,
     Object? address = null,
   }) {
     return _then(_$_LocationMapState(
+      isLocationSelected: null == isLocationSelected
+          ? _value.isLocationSelected
+          : isLocationSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -284,11 +411,14 @@ class __$$_LocationMapStateCopyWithImpl<$Res>
 
 class _$_LocationMapState implements _LocationMapState {
   const _$_LocationMapState(
-      {required this.isLoading,
+      {required this.isLocationSelected,
+      required this.isLoading,
       required this.isError,
       required this.value,
       required this.address});
 
+  @override
+  final bool isLocationSelected;
   @override
   final bool isLoading;
   @override
@@ -300,7 +430,7 @@ class _$_LocationMapState implements _LocationMapState {
 
   @override
   String toString() {
-    return 'LocationMapState(isLoading: $isLoading, isError: $isError, value: $value, address: $address)';
+    return 'LocationMapState(isLocationSelected: $isLocationSelected, isLoading: $isLoading, isError: $isError, value: $value, address: $address)';
   }
 
   @override
@@ -308,6 +438,8 @@ class _$_LocationMapState implements _LocationMapState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LocationMapState &&
+            (identical(other.isLocationSelected, isLocationSelected) ||
+                other.isLocationSelected == isLocationSelected) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
@@ -316,8 +448,8 @@ class _$_LocationMapState implements _LocationMapState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, isError, value, address);
+  int get hashCode => Object.hash(
+      runtimeType, isLocationSelected, isLoading, isError, value, address);
 
   @JsonKey(ignore: true)
   @override
@@ -328,11 +460,14 @@ class _$_LocationMapState implements _LocationMapState {
 
 abstract class _LocationMapState implements LocationMapState {
   const factory _LocationMapState(
-      {required final bool isLoading,
+      {required final bool isLocationSelected,
+      required final bool isLoading,
       required final bool isError,
       required final LocationMapModel value,
       required final AddressModel address}) = _$_LocationMapState;
 
+  @override
+  bool get isLocationSelected;
   @override
   bool get isLoading;
   @override

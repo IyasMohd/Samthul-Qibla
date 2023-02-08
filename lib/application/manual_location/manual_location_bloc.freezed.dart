@@ -16,15 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ManualLocationEvent {
-  double get aralulBalad => throw _privateConstructorUsedError;
-  double get thoolulBalad => throw _privateConstructorUsedError;
-  bool get directionEast => throw _privateConstructorUsedError;
-  bool get directionNorth => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(double aralulBalad, double thoolulBalad,
             bool directionEast, bool directionNorth)
         getSamth,
+    required TResult Function() refreshUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +29,7 @@ mixin _$ManualLocationEvent {
     TResult? Function(double aralulBalad, double thoolulBalad,
             bool directionEast, bool directionNorth)?
         getSamth,
+    TResult? Function()? refreshUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,28 +37,28 @@ mixin _$ManualLocationEvent {
     TResult Function(double aralulBalad, double thoolulBalad,
             bool directionEast, bool directionNorth)?
         getSamth,
+    TResult Function()? refreshUI,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetSamth value) getSamth,
+    required TResult Function(GetSamth value) getSamth,
+    required TResult Function(RefreshUI value) refreshUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetSamth value)? getSamth,
+    TResult? Function(GetSamth value)? getSamth,
+    TResult? Function(RefreshUI value)? refreshUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetSamth value)? getSamth,
+    TResult Function(GetSamth value)? getSamth,
+    TResult Function(RefreshUI value)? refreshUI,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ManualLocationEventCopyWith<ManualLocationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -69,12 +67,6 @@ abstract class $ManualLocationEventCopyWith<$Res> {
   factory $ManualLocationEventCopyWith(
           ManualLocationEvent value, $Res Function(ManualLocationEvent) then) =
       _$ManualLocationEventCopyWithImpl<$Res, ManualLocationEvent>;
-  @useResult
-  $Res call(
-      {double aralulBalad,
-      double thoolulBalad,
-      bool directionEast,
-      bool directionNorth});
 }
 
 /// @nodoc
@@ -86,43 +78,13 @@ class _$ManualLocationEventCopyWithImpl<$Res, $Val extends ManualLocationEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? aralulBalad = null,
-    Object? thoolulBalad = null,
-    Object? directionEast = null,
-    Object? directionNorth = null,
-  }) {
-    return _then(_value.copyWith(
-      aralulBalad: null == aralulBalad
-          ? _value.aralulBalad
-          : aralulBalad // ignore: cast_nullable_to_non_nullable
-              as double,
-      thoolulBalad: null == thoolulBalad
-          ? _value.thoolulBalad
-          : thoolulBalad // ignore: cast_nullable_to_non_nullable
-              as double,
-      directionEast: null == directionEast
-          ? _value.directionEast
-          : directionEast // ignore: cast_nullable_to_non_nullable
-              as bool,
-      directionNorth: null == directionNorth
-          ? _value.directionNorth
-          : directionNorth // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_GetSamthCopyWith<$Res>
-    implements $ManualLocationEventCopyWith<$Res> {
-  factory _$$_GetSamthCopyWith(
-          _$_GetSamth value, $Res Function(_$_GetSamth) then) =
-      __$$_GetSamthCopyWithImpl<$Res>;
-  @override
+abstract class _$$GetSamthCopyWith<$Res> {
+  factory _$$GetSamthCopyWith(
+          _$GetSamth value, $Res Function(_$GetSamth) then) =
+      __$$GetSamthCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {double aralulBalad,
@@ -132,11 +94,10 @@ abstract class _$$_GetSamthCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GetSamthCopyWithImpl<$Res>
-    extends _$ManualLocationEventCopyWithImpl<$Res, _$_GetSamth>
-    implements _$$_GetSamthCopyWith<$Res> {
-  __$$_GetSamthCopyWithImpl(
-      _$_GetSamth _value, $Res Function(_$_GetSamth) _then)
+class __$$GetSamthCopyWithImpl<$Res>
+    extends _$ManualLocationEventCopyWithImpl<$Res, _$GetSamth>
+    implements _$$GetSamthCopyWith<$Res> {
+  __$$GetSamthCopyWithImpl(_$GetSamth _value, $Res Function(_$GetSamth) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -147,7 +108,7 @@ class __$$_GetSamthCopyWithImpl<$Res>
     Object? directionEast = null,
     Object? directionNorth = null,
   }) {
-    return _then(_$_GetSamth(
+    return _then(_$GetSamth(
       aralulBalad: null == aralulBalad
           ? _value.aralulBalad
           : aralulBalad // ignore: cast_nullable_to_non_nullable
@@ -170,8 +131,8 @@ class __$$_GetSamthCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetSamth implements _GetSamth {
-  const _$_GetSamth(
+class _$GetSamth implements GetSamth {
+  const _$GetSamth(
       {required this.aralulBalad,
       required this.thoolulBalad,
       required this.directionEast,
@@ -195,7 +156,7 @@ class _$_GetSamth implements _GetSamth {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetSamth &&
+            other is _$GetSamth &&
             (identical(other.aralulBalad, aralulBalad) ||
                 other.aralulBalad == aralulBalad) &&
             (identical(other.thoolulBalad, thoolulBalad) ||
@@ -213,8 +174,8 @@ class _$_GetSamth implements _GetSamth {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetSamthCopyWith<_$_GetSamth> get copyWith =>
-      __$$_GetSamthCopyWithImpl<_$_GetSamth>(this, _$identity);
+  _$$GetSamthCopyWith<_$GetSamth> get copyWith =>
+      __$$GetSamthCopyWithImpl<_$GetSamth>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -222,6 +183,7 @@ class _$_GetSamth implements _GetSamth {
     required TResult Function(double aralulBalad, double thoolulBalad,
             bool directionEast, bool directionNorth)
         getSamth,
+    required TResult Function() refreshUI,
   }) {
     return getSamth(aralulBalad, thoolulBalad, directionEast, directionNorth);
   }
@@ -232,6 +194,7 @@ class _$_GetSamth implements _GetSamth {
     TResult? Function(double aralulBalad, double thoolulBalad,
             bool directionEast, bool directionNorth)?
         getSamth,
+    TResult? Function()? refreshUI,
   }) {
     return getSamth?.call(
         aralulBalad, thoolulBalad, directionEast, directionNorth);
@@ -243,6 +206,7 @@ class _$_GetSamth implements _GetSamth {
     TResult Function(double aralulBalad, double thoolulBalad,
             bool directionEast, bool directionNorth)?
         getSamth,
+    TResult Function()? refreshUI,
     required TResult orElse(),
   }) {
     if (getSamth != null) {
@@ -254,7 +218,8 @@ class _$_GetSamth implements _GetSamth {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetSamth value) getSamth,
+    required TResult Function(GetSamth value) getSamth,
+    required TResult Function(RefreshUI value) refreshUI,
   }) {
     return getSamth(this);
   }
@@ -262,7 +227,8 @@ class _$_GetSamth implements _GetSamth {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetSamth value)? getSamth,
+    TResult? Function(GetSamth value)? getSamth,
+    TResult? Function(RefreshUI value)? refreshUI,
   }) {
     return getSamth?.call(this);
   }
@@ -270,7 +236,8 @@ class _$_GetSamth implements _GetSamth {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetSamth value)? getSamth,
+    TResult Function(GetSamth value)? getSamth,
+    TResult Function(RefreshUI value)? refreshUI,
     required TResult orElse(),
   }) {
     if (getSamth != null) {
@@ -280,29 +247,133 @@ class _$_GetSamth implements _GetSamth {
   }
 }
 
-abstract class _GetSamth implements ManualLocationEvent {
-  const factory _GetSamth(
+abstract class GetSamth implements ManualLocationEvent {
+  const factory GetSamth(
       {required final double aralulBalad,
       required final double thoolulBalad,
       required final bool directionEast,
-      required final bool directionNorth}) = _$_GetSamth;
+      required final bool directionNorth}) = _$GetSamth;
 
-  @override
   double get aralulBalad;
-  @override
   double get thoolulBalad;
-  @override
   bool get directionEast;
-  @override
   bool get directionNorth;
-  @override
   @JsonKey(ignore: true)
-  _$$_GetSamthCopyWith<_$_GetSamth> get copyWith =>
+  _$$GetSamthCopyWith<_$GetSamth> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+abstract class _$$RefreshUICopyWith<$Res> {
+  factory _$$RefreshUICopyWith(
+          _$RefreshUI value, $Res Function(_$RefreshUI) then) =
+      __$$RefreshUICopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RefreshUICopyWithImpl<$Res>
+    extends _$ManualLocationEventCopyWithImpl<$Res, _$RefreshUI>
+    implements _$$RefreshUICopyWith<$Res> {
+  __$$RefreshUICopyWithImpl(
+      _$RefreshUI _value, $Res Function(_$RefreshUI) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RefreshUI implements RefreshUI {
+  const _$RefreshUI();
+
+  @override
+  String toString() {
+    return 'ManualLocationEvent.refreshUI()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RefreshUI);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double aralulBalad, double thoolulBalad,
+            bool directionEast, bool directionNorth)
+        getSamth,
+    required TResult Function() refreshUI,
+  }) {
+    return refreshUI();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double aralulBalad, double thoolulBalad,
+            bool directionEast, bool directionNorth)?
+        getSamth,
+    TResult? Function()? refreshUI,
+  }) {
+    return refreshUI?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double aralulBalad, double thoolulBalad,
+            bool directionEast, bool directionNorth)?
+        getSamth,
+    TResult Function()? refreshUI,
+    required TResult orElse(),
+  }) {
+    if (refreshUI != null) {
+      return refreshUI();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetSamth value) getSamth,
+    required TResult Function(RefreshUI value) refreshUI,
+  }) {
+    return refreshUI(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetSamth value)? getSamth,
+    TResult? Function(RefreshUI value)? refreshUI,
+  }) {
+    return refreshUI?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetSamth value)? getSamth,
+    TResult Function(RefreshUI value)? refreshUI,
+    required TResult orElse(),
+  }) {
+    if (refreshUI != null) {
+      return refreshUI(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RefreshUI implements ManualLocationEvent {
+  const factory RefreshUI() = _$RefreshUI;
+}
+
+/// @nodoc
 mixin _$ManualLocationState {
+  bool get isDetailsEntered => throw _privateConstructorUsedError;
   ManualLocationModel get value => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -316,7 +387,7 @@ abstract class $ManualLocationStateCopyWith<$Res> {
           ManualLocationState value, $Res Function(ManualLocationState) then) =
       _$ManualLocationStateCopyWithImpl<$Res, ManualLocationState>;
   @useResult
-  $Res call({ManualLocationModel value});
+  $Res call({bool isDetailsEntered, ManualLocationModel value});
 }
 
 /// @nodoc
@@ -332,9 +403,14 @@ class _$ManualLocationStateCopyWithImpl<$Res, $Val extends ManualLocationState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isDetailsEntered = null,
     Object? value = null,
   }) {
     return _then(_value.copyWith(
+      isDetailsEntered: null == isDetailsEntered
+          ? _value.isDetailsEntered
+          : isDetailsEntered // ignore: cast_nullable_to_non_nullable
+              as bool,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -351,7 +427,7 @@ abstract class _$$_ManualLocationStateCopyWith<$Res>
       __$$_ManualLocationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ManualLocationModel value});
+  $Res call({bool isDetailsEntered, ManualLocationModel value});
 }
 
 /// @nodoc
@@ -365,9 +441,14 @@ class __$$_ManualLocationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isDetailsEntered = null,
     Object? value = null,
   }) {
     return _then(_$_ManualLocationState(
+      isDetailsEntered: null == isDetailsEntered
+          ? _value.isDetailsEntered
+          : isDetailsEntered // ignore: cast_nullable_to_non_nullable
+              as bool,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -379,14 +460,17 @@ class __$$_ManualLocationStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ManualLocationState implements _ManualLocationState {
-  const _$_ManualLocationState({required this.value});
+  const _$_ManualLocationState(
+      {required this.isDetailsEntered, required this.value});
 
+  @override
+  final bool isDetailsEntered;
   @override
   final ManualLocationModel value;
 
   @override
   String toString() {
-    return 'ManualLocationState(value: $value)';
+    return 'ManualLocationState(isDetailsEntered: $isDetailsEntered, value: $value)';
   }
 
   @override
@@ -394,11 +478,13 @@ class _$_ManualLocationState implements _ManualLocationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ManualLocationState &&
+            (identical(other.isDetailsEntered, isDetailsEntered) ||
+                other.isDetailsEntered == isDetailsEntered) &&
             (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value);
+  int get hashCode => Object.hash(runtimeType, isDetailsEntered, value);
 
   @JsonKey(ignore: true)
   @override
@@ -410,8 +496,11 @@ class _$_ManualLocationState implements _ManualLocationState {
 
 abstract class _ManualLocationState implements ManualLocationState {
   const factory _ManualLocationState(
-      {required final ManualLocationModel value}) = _$_ManualLocationState;
+      {required final bool isDetailsEntered,
+      required final ManualLocationModel value}) = _$_ManualLocationState;
 
+  @override
+  bool get isDetailsEntered;
   @override
   ManualLocationModel get value;
   @override

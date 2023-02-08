@@ -8,6 +8,9 @@ class SamthToggleButtons extends StatefulWidget {
     required this.secondDirection,
     required this.boolList,
     required this.notifier,
+    required this.focusNodeList,
+    required this.focusNodeTo,
+    required this.focusNodetoggle,
   });
 
   final String firstDirection;
@@ -17,6 +20,12 @@ class SamthToggleButtons extends StatefulWidget {
 
   ValueNotifier<bool> notifier;
 
+  final List<FocusNode> focusNodeList;
+
+  final FocusNode focusNodeTo;
+
+  final FocusNode focusNodetoggle;
+
   @override
   State<SamthToggleButtons> createState() => _SamthToggleButtonsState();
 }
@@ -25,8 +34,11 @@ class _SamthToggleButtonsState extends State<SamthToggleButtons> {
   @override
   Widget build(BuildContext context) {
     return ToggleButtons(
+      focusNodes: widget.focusNodeList,
       direction: Axis.horizontal,
       onPressed: (newIndex) {
+        widget.focusNodetoggle.unfocus();
+        FocusScope.of(context).requestFocus(widget.focusNodeTo);
         setState(() {
           for (int index = 0; index < widget.boolList.length; index++) {
             // checking for the index value
@@ -63,7 +75,7 @@ class _SamthToggleButtonsState extends State<SamthToggleButtons> {
       // borderRadius: BorderRadius.circular(30),
       selectedBorderColor: Colors.white.withOpacity(0.1),
       isSelected: widget.boolList,
-      constraints: const BoxConstraints(minHeight: 54, minWidth: 40),
+      constraints: const BoxConstraints(minHeight: 60, minWidth: 40),
       children: [
         Text(
           widget.firstDirection,

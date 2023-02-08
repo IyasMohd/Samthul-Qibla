@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/core/asset_manager.dart';
 import 'package:samthul_qibla/core/colors/colors.dart';
@@ -13,6 +14,7 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: backGround,
@@ -36,7 +38,7 @@ class DashBoard extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (ctx) => MainPage(),
+                      builder: (ctx) => const MainPage(),
                     ),
                   );
                 },
@@ -104,7 +106,7 @@ class DashBoard extends StatelessWidget {
                   child: Text(
                     'Coming Soon...',
                     style: GoogleFonts.poppins(
-                      color: Colors.white,
+                      color: lightblue,
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
                     ),

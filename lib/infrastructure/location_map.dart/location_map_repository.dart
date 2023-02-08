@@ -5,9 +5,9 @@ import 'package:geocoding/geocoding.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:samthul_qibla/domain/core/failure/main_failure.dart';
-import 'package:samthul_qibla/domain/current_location/current_location_repository.dart';
+import 'package:samthul_qibla/domain/location_map/location_map_service.dart';
 import 'package:samthul_qibla/domain/location_map/models/location_map_model.dart';
-import 'package:samthul_qibla/infrastructure/location_map.dart/location_map_service.dart';
+import 'package:samthul_qibla/infrastructure/current_location/current_location_repository.dart';
 import 'package:samthul_qibla/presentation/current_location/functions_current_location.dart';
 import 'package:samthul_qibla/presentation/location_from_map/location_map_functions.dart';
 import 'package:samthul_qibla/presentation/manual_location/functions_manual.dart';
@@ -36,22 +36,23 @@ class LocationMapRepository implements LocationMapService {
 
         final thoolulBalad =
             convertNegativeintoPositive(selectedPosition.value.longitude);
-        const araluMakka = 21.41666667;
-        const thooluMakka = 39.9;
+        const araluMakka = 21.4225;
+        const thooluMakka = 39.82611111;
         final longitudeDirectionEast = thoolAralDirection(thoolulBalad);
         final latitudeDirectionNorth = thoolAralDirection(aralulBalad);
         final qausuSsamth = samthulQibla(aralulBalad, araluMakka, thoolulBalad,
             longitudeDirectionEast, latitudeDirectionNorth);
         final qausuSsamthConverted = convertDecimalTolatlong(qausuSsamth);
 
-         //get Direction from.....to.....
+        //get Direction from.....to.....
         final samathDirectionString = samthDirection(
-            aralulBalad,
-            araluMakka,
-            latitudeDirectionNorth,
-            thoolulBalad,
-            thooluMakka,
-            longitudeDirectionEast,);
+          aralulBalad,
+          araluMakka,
+          latitudeDirectionNorth,
+          thoolulBalad,
+          thooluMakka,
+          longitudeDirectionEast,
+        );
 
         return Right(
           LocationMapModel(

@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:samthul_qibla/domain/core/failure/main_failure.dart';
 import 'package:samthul_qibla/domain/current_location/models/current_location_model.dart';
-import 'package:samthul_qibla/infrastructure/current_location/current_location_service.dart';
+import 'package:samthul_qibla/domain/current_location/current_location_service.dart';
 
 part 'current_location_bloc.freezed.dart';
 part 'current_location_event.dart';
