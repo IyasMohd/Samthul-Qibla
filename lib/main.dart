@@ -5,8 +5,9 @@ import 'package:samthul_qibla/presentation/material_app/material_app.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await configureInjection();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   runApp(const MyApp());
+  FlutterNativeSplash.remove();
 }

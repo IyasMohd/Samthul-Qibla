@@ -31,42 +31,43 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Samthul Qibla',
-          theme: ThemeData(
-            useMaterial3: true,
-            // colorSchemeSeed: backGround,
-            canvasColor: Colors.transparent,
-            elevatedButtonTheme: ElevatedButtonThemeData(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white.withOpacity(0.5),
-                fixedSize: const Size(300, 50),
-              ),
+        debugShowCheckedModeBanner: false,
+        title: 'Samthul Qibla',
+        theme: ThemeData(
+          useMaterial3: true,
+          // colorSchemeSeed: backGround,
+          canvasColor: Colors.transparent,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white.withOpacity(0.5),
+              fixedSize: const Size(300, 50),
             ),
-            appBarTheme: AppBarTheme(
-              backgroundColor: backGround,
-              // foregroundColor: Colors.black,
-              iconTheme: const IconThemeData(
-                color: kblack,
-              ),
-              actionsIconTheme: const IconThemeData(
-                color: kblack,
-                size: 26,
-              ),
-              toolbarHeight: 70,
-              elevation: 0,
-              centerTitle: true,
-              titleSpacing: 20,
-              titleTextStyle: GoogleFonts.poppins(
-                color: Colors.black,
-                letterSpacing: 5,
-                fontWeight: FontWeight.bold,
-                fontSize: 19,
-              ),
-            ),
-            primarySwatch: Colors.blueGrey,
           ),
-          home: DashBoard()),
+          appBarTheme: AppBarTheme(
+            backgroundColor: backGround,
+            // foregroundColor: Colors.black,
+            iconTheme: const IconThemeData(
+              color: kblack,
+            ),
+            actionsIconTheme: const IconThemeData(
+              color: kblack,
+              size: 26,
+            ),
+            toolbarHeight: 70,
+            elevation: 0,
+            centerTitle: true,
+            titleSpacing: 20,
+            titleTextStyle: GoogleFonts.poppins(
+              color: Colors.black,
+              letterSpacing: 5,
+              fontWeight: FontWeight.bold,
+              fontSize: 19,
+            ),
+          ),
+          primarySwatch: Colors.blueGrey,
+        ),
+        home: DashBoard(),
+      ),
     );
     // );
   }

@@ -6,8 +6,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:samthul_qibla/domain/core/failure/main_failure.dart';
-import 'package:samthul_qibla/domain/current_location/models/current_location_model.dart';
 import 'package:samthul_qibla/domain/current_location/current_location_service.dart';
+import 'package:samthul_qibla/domain/current_location/models/current_location_model.dart';
 import 'package:samthul_qibla/presentation/current_location/functions_current_location.dart';
 import 'package:samthul_qibla/presentation/manual_location/functions_manual.dart';
 
@@ -53,9 +53,8 @@ class CurrentLocationRepository implements CurrentLocationService {
 
         final thoolulBalad =
             convertNegativeintoPositive(currentLocation.longitude);
-        const araluMakka = 21.41666667;
-        const thooluMakka = 39.9;
-
+        const araluMakka = 21.4225;
+        const thooluMakka = 39.82611111;
         final longitudeDirectionEast = thoolAralDirection(thoolulBalad);
         final latitudeDirectionNorth = thoolAralDirection(aralulBalad);
         final qausuSsamth = samthulQibla(aralulBalad, araluMakka, thoolulBalad,

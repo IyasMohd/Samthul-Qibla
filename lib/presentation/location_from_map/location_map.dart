@@ -7,7 +7,6 @@ import 'package:samthul_qibla/core/colors/colors.dart';
 import 'package:samthul_qibla/presentation/location_from_map/location_map_functions.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-// import 'package:slidi';
 class LocationMap extends StatelessWidget {
   LocationMap({Key? key}) : super(key: key);
 

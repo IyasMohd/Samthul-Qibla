@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/core/asset_manager.dart';
 import 'package:samthul_qibla/core/colors/colors.dart';
@@ -14,7 +13,6 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FlutterNativeSplash.remove();
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: backGround,
