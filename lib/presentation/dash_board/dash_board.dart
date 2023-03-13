@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/core/asset_manager.dart';
 import 'package:samthul_qibla/core/colors/colors.dart';
@@ -13,24 +14,21 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: backGround,
       key: _scaffoldKey,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 0.5.w),
           child: Column(
             children: [
-              const SizedBox(
-                height: 20,
-              ),
+              2.5.verticalSpace,
               AppBarWidget(
                 scaffoldKey: _scaffoldKey,
                 title: 'AL BAHJA',
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 27.h,
               ),
               GestureDetector(
                 onTap: () {
@@ -41,24 +39,23 @@ class DashBoard extends StatelessWidget {
                   );
                 },
                 child: DashBoardListContainer(
-                  size: size,
                   child: Stack(
                     children: [
                       Positioned(
-                        right: 2,
-                        bottom: -140,
+                        right: 80.w,
+                        bottom: -60.h,
                         child: Image.asset(
                           AssetManager.kaabaIcon,
                           color: Colors.black.withOpacity(0.5),
                           opacity: const AlwaysStoppedAnimation(0.4),
-                          width: 370,
+                          width: 250.w,
                         ),
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(18)),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(18.r)),
                           child: Image.asset(
                             AssetManager.compassImage,
                             scale: 7,
@@ -66,26 +63,29 @@ class DashBoard extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 25, left: 30),
+                        padding: EdgeInsets.only(
+                          // top: size.height * 0.025,
+                          left: 20.w,
+                          right: 120.w,
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Qibla Direction',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 17.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const SizedBox(
-                              height: 8,
-                            ),
+                            3.verticalSpace,
                             Text(
-                              'Obtaining the correct direction \nof the Qibla from any location \nworldwide with precision.',
+                              'Obtaining the correct direction of the Qibla from any location worldwide with precision.',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 16,
+                                fontSize: 12.sp,
                               ),
                             )
                           ],
@@ -95,17 +95,14 @@ class DashBoard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              8.verticalSpace,
               DashBoardListContainer(
-                size: size,
                 child: Center(
                   child: Text(
                     'Coming Soon...',
                     style: GoogleFonts.poppins(
                       color: lightblue,
-                      fontSize: 17,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -118,7 +115,7 @@ class DashBoard extends StatelessWidget {
       drawer: SafeArea(
         child: Drawer(
           backgroundColor: darkblue,
-          width: size.width * 0.5,
+          width: 160,
           child: ListView(children: [
             ListTile(
               trailing: IconButton(
@@ -132,7 +129,7 @@ class DashBoard extends StatelessWidget {
             ),
             const ListTile(
               title: Text(
-                'Home',
+                'About',
                 style: TextStyle(
                   color: Colors.white,
                 ),

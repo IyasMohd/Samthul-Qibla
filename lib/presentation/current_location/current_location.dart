@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/application/current_location/current_location_bloc.dart';
 import 'package:samthul_qibla/core/asset_manager.dart';
@@ -16,38 +17,29 @@ class CurrentLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsBinding.instance.addPersistentFrameCallback((_) {
-    //   BlocProvider.of<CurrentLocationBloc>(context)
-    //       .add(const CurrentLocationEvent.initialize());
-    // });
-
     BlocProvider.of<CurrentLocationBloc>(context)
         .add(const CurrentLocationEvent.initialize());
 
     return Scaffold(
       backgroundColor: backGround,
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: BlocBuilder<CurrentLocationBloc, CurrentLocationState>(
-          builder: (context, state) {
-            return Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(AssetManager.backGroundImage),
-                        fit: BoxFit.cover),
-                  ),
+      body: BlocBuilder<CurrentLocationBloc, CurrentLocationState>(
+        builder: (context, state) {
+          return Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(AssetManager.backGroundImage),
+                      fit: BoxFit.cover),
                 ),
-                Column(
+              ),
+              SafeArea(
+                child: Column(
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const AppBarCurrentLocation(),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    5.verticalSpace,
+                    AppBarCurrentLocation(),
+                    10.verticalSpace,
                     RefreshIndicator(
                       displacement: 0,
                       edgeOffset: 0,
@@ -60,19 +52,29 @@ class CurrentLocation extends StatelessWidget {
                       child: SingleChildScrollView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 80),
+                          padding: EdgeInsets.only(
+                            left: 0.5.w,
+                            right: 0.5.w,
+                            top: 10.h,
+                          ),
                           child: state.isLoading
-                              ? const Center(
-                                  child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                ))
+                              ? SizedBox(
+                                  height: 400.h,
+                                  child: const Center(
+                                      child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )),
+                                )
                               : state.isError
-                                  ? const Center(
-                                      child: Text(
-                                        'An Error Occured',
-                                        style: TextStyle(
-                                          color: Colors.white,
+                                  ? SizedBox(
+                                      height: 400.h,
+                                      child: Center(
+                                        child: Text(
+                                          'An Error Occured',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15.sp,
+                                          ),
                                         ),
                                       ),
                                     )
@@ -81,44 +83,44 @@ class CurrentLocation extends StatelessWidget {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 35),
+                                          padding: EdgeInsets.only(
+                                              top: 45.h,
+                                              left: 45.w,
+                                              right: 45.w,
+                                              bottom: 8),
                                           child: Text(
                                             state.value.address,
+                                            maxLines: 2,
                                             textAlign: TextAlign.center,
                                             style: GoogleFonts.poppins(
-                                              textStyle: const TextStyle(
+                                              textStyle: TextStyle(
                                                 color: backGround,
-                                                fontSize: 20,
+                                                fontSize: 15.sp,
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
+                                        33.verticalSpace,
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 25.w),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              const Icon(
+                                              Icon(
                                                 Icons.location_on_sharp,
                                                 color: backGround,
-                                                size: 20,
+                                                size: 20.sp,
                                               ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
+                                              5.horizontalSpace,
                                               Text(
                                                 "Latitude :     ${state.value.latittude}",
                                                 style: GoogleFonts.poppins(
-                                                  textStyle: const TextStyle(
+                                                  textStyle: TextStyle(
                                                     color: backGround,
-                                                    fontSize: 25,
+                                                    fontSize: 20.sp,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
@@ -126,30 +128,26 @@ class CurrentLocation extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
+                                        15.verticalSpace,
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 22.w),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              const Icon(
+                                              Icon(
                                                 Icons.location_on_sharp,
                                                 color: backGround,
-                                                size: 20,
+                                                size: 20.sp,
                                               ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
+                                              5.horizontalSpace,
                                               Text(
                                                 "Longitude :     ${state.value.longitude}",
                                                 style: GoogleFonts.poppins(
-                                                  textStyle: const TextStyle(
+                                                  textStyle: TextStyle(
                                                     color: backGround,
-                                                    fontSize: 25,
+                                                    fontSize: 20.sp,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
@@ -157,38 +155,30 @@ class CurrentLocation extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 240,
-                                        ),
-                                        const Text(
+                                        180.verticalSpace,
+                                        Text(
                                           'QIBLA DIRECTION',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 25,
+                                            fontSize: 20.sp,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
+                                        15.verticalSpace,
                                         Text(
                                           state.value.samthulQibla,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               color: kblack,
-                                              fontSize: 45,
+                                              fontSize: 35.sp,
                                               fontWeight: FontWeight.w900),
                                         ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
+                                        15.verticalSpace,
                                         Text(
                                           state.value.direction,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 23),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17.sp,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -197,10 +187,10 @@ class CurrentLocation extends StatelessWidget {
                     ),
                   ],
                 ),
-              ],
-            );
-          },
-        ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

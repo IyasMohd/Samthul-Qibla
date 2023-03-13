@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/application/current_location/current_location_bloc.dart';
 import 'package:samthul_qibla/application/location_map/location_map_bloc.dart';
@@ -30,44 +31,46 @@ class MyApp extends StatelessWidget {
           create: (context) => getIt<ManualLocationBloc>(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Samthul Qibla',
-        theme: ThemeData(
-          useMaterial3: true,
-          // colorSchemeSeed: backGround,
-          canvasColor: Colors.transparent,
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white.withOpacity(0.5),
-              fixedSize: const Size(300, 50),
-            ),
-          ),
-          appBarTheme: AppBarTheme(
-            backgroundColor: backGround,
-            // foregroundColor: Colors.black,
-            iconTheme: const IconThemeData(
-              color: kblack,
-            ),
-            actionsIconTheme: const IconThemeData(
-              color: kblack,
-              size: 26,
-            ),
-            toolbarHeight: 70,
-            elevation: 0,
-            centerTitle: true,
-            titleSpacing: 20,
-            titleTextStyle: GoogleFonts.poppins(
-              color: Colors.black,
-              letterSpacing: 5,
-              fontWeight: FontWeight.bold,
-              fontSize: 19,
-            ),
-          ),
-          primarySwatch: Colors.blueGrey,
-        ),
-        home: DashBoard(),
-      ),
+      child: ScreenUtilInit(
+          designSize: const Size(360, 690),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, _) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Samthul Qibla',
+              theme: ThemeData(
+                useMaterial3: true,
+                // colorSchemeSeed: backGround,
+                scaffoldBackgroundColor: backGround,
+                canvasColor: Colors.transparent,
+                elevatedButtonTheme: ElevatedButtonThemeData(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white.withOpacity(0.5),
+                    fixedSize: Size(300.w, 50.h),
+                  ),
+                ),
+                appBarTheme: AppBarTheme(
+                  backgroundColor: backGround,
+                  // foregroundColor: Colors.black,
+                  iconTheme: IconThemeData(
+                    color: kblack,
+                  ),
+                  actionsIconTheme: IconThemeData(
+                    color: kblack,
+                  ),
+                  elevation: 0,
+                  centerTitle: true,
+                  titleTextStyle: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                primarySwatch: Colors.blueGrey,
+              ),
+              home: DashBoard(),
+            );
+          }),
     );
     // );
   }

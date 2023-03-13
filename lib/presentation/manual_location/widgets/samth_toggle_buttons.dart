@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SamthToggleButtons extends StatefulWidget {
@@ -33,6 +34,7 @@ class SamthToggleButtons extends StatefulWidget {
 class _SamthToggleButtonsState extends State<SamthToggleButtons> {
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return ToggleButtons(
       focusNodes: widget.focusNodeList,
       direction: Axis.horizontal,
@@ -75,19 +77,19 @@ class _SamthToggleButtonsState extends State<SamthToggleButtons> {
       // borderRadius: BorderRadius.circular(30),
       selectedBorderColor: Colors.white.withOpacity(0.1),
       isSelected: widget.boolList,
-      constraints: const BoxConstraints(minHeight: 60, minWidth: 40),
+      constraints: BoxConstraints(minHeight: 45.h, minWidth: 37.w),
       children: [
         Text(
           widget.firstDirection,
           style: GoogleFonts.poppins(
-            textStyle: const TextStyle(fontSize: 20),
+            textStyle: TextStyle(fontSize: 20.sp),
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           widget.secondDirection,
           style: GoogleFonts.poppins(
-            textStyle: const TextStyle(fontSize: 20),
+            textStyle: TextStyle(fontSize: 20.sp),
             fontWeight: FontWeight.bold,
           ),
         )

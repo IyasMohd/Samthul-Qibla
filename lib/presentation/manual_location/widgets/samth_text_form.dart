@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SamthFormField extends StatelessWidget {
@@ -33,26 +34,31 @@ class SamthFormField extends StatelessWidget {
         focusNode: focusNode,
         onFieldSubmitted: onFieldSubmitted,
         style: GoogleFonts.poppins(
-          textStyle: const TextStyle(
+          textStyle: TextStyle(
             color: Colors.white,
+            fontSize: 15.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
         controller: controller,
-        cursorHeight: 20,
+        cursorHeight: 20.h,
         cursorColor: Colors.white,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           fillColor: Colors.white.withOpacity(0.1),
           filled: true,
           suffixText: suffixText,
-          suffixStyle: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
-          contentPadding: const EdgeInsets.all(10),
+          suffixStyle: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 15.sp,
+          ),
+          contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
           label: Text(labelText),
           labelStyle: GoogleFonts.poppins(
             textStyle: TextStyle(
                 color: Colors.white.withOpacity(0.2),
+                fontSize: 10.sp,
                 fontWeight: FontWeight.bold),
           ),
           border: InputBorder.none,

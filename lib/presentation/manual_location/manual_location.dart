@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/application/manual_location/manual_location_bloc.dart';
 import 'package:samthul_qibla/core/asset_manager.dart';
@@ -62,48 +63,43 @@ class ManualLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double size = MediaQuery.of(context).devicePixelRatio;
     BlocProvider.of<ManualLocationBloc>(context)
         .add(const ManualLocationEvent.refreshUI());
     return Scaffold(
       backgroundColor: backGround,
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(AssetManager.backGroundImage),
-                    fit: BoxFit.cover),
-              ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(AssetManager.backGroundImage),
+                  fit: BoxFit.cover),
             ),
-            Column(
+          ),
+          SafeArea(
+            child: Column(
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
+                5.verticalSpace,
                 const AppBarCurrentLocation(),
+                20.verticalSpace,
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 80),
+                  padding: EdgeInsets.symmetric(horizontal: 6.w),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.location_on_sharp,
                         color: backGround,
-                        size: 20,
+                        size: 18.sp,
                       ),
-                      const SizedBox(
-                        width: 8,
-                      ),
+                      7.horizontalSpace,
                       Text(
                         "Latitude",
                         style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            letterSpacing: 2,
+                          textStyle: TextStyle(
                             color: backGround,
-                            fontSize: 23,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -111,12 +107,9 @@ class ManualLocation extends StatelessWidget {
                     ],
                   ),
                 ),
+                5.verticalSpace,
                 Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: 10,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 12.w),
                   child: Container(
                     color: Colors.transparent,
                     child: Form(
@@ -142,9 +135,7 @@ class ManualLocation extends StatelessWidget {
                               }
                             }),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          9.horizontalSpace,
                           SamthFormField(
                             textInputAction: TextInputAction.next,
                             focusNode: fMinuteslat,
@@ -164,9 +155,7 @@ class ManualLocation extends StatelessWidget {
                               }
                             }),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          9.horizontalSpace,
                           SamthFormField(
                             textInputAction: TextInputAction.next,
                             focusNode: fSecondslat,
@@ -187,9 +176,7 @@ class ManualLocation extends StatelessWidget {
                               }
                             }),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          9.horizontalSpace,
                           Flexible(
                             child: SamthToggleButtons(
                               focusNodeList: [fNorthToggle, fSouthToggle],
@@ -206,8 +193,9 @@ class ManualLocation extends StatelessWidget {
                     ),
                   ),
                 ),
+                20.verticalSpace,
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+                  padding: EdgeInsets.symmetric(horizontal: 6.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -216,16 +204,13 @@ class ManualLocation extends StatelessWidget {
                         color: backGround,
                         size: 20,
                       ),
-                      const SizedBox(
-                        width: 8,
-                      ),
+                      7.horizontalSpace,
                       Text(
                         "Longitude",
                         style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            letterSpacing: 2,
+                          textStyle: TextStyle(
                             color: backGround,
-                            fontSize: 23,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -233,12 +218,9 @@ class ManualLocation extends StatelessWidget {
                     ],
                   ),
                 ),
+                5.verticalSpace,
                 Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: 10,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 12.w),
                   child: Container(
                     color: Colors.transparent,
                     child: Form(
@@ -264,9 +246,7 @@ class ManualLocation extends StatelessWidget {
                               }
                             }),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          9.horizontalSpace,
                           SamthFormField(
                             textInputAction: TextInputAction.next,
                             focusNode: fMinuteslong,
@@ -286,9 +266,7 @@ class ManualLocation extends StatelessWidget {
                               }
                             }),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          9.horizontalSpace,
                           SamthFormField(
                             textInputAction: TextInputAction.done,
                             onFieldSubmitted: (p0) {
@@ -309,9 +287,7 @@ class ManualLocation extends StatelessWidget {
                               }
                             }),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          9.horizontalSpace,
                           Flexible(
                             child: SamthToggleButtons(
                               focusNodeTo: fButton,
@@ -333,22 +309,22 @@ class ManualLocation extends StatelessWidget {
                     return !state.isDetailsEntered
                         ? Column(
                             children: [
-                              const SizedBox(
-                                height: 240,
-                              ),
+                              170.verticalSpace,
                               Text('Enter location details',
                                   style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
+                                    textStyle: TextStyle(
                                       color: darkblue,
-                                      fontSize: 20,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   )),
                             ],
                           )
-                        : Padding(
-                            padding: EdgeInsets.only(top: size * 70),
-                            child: const QiblaDirectionWidget(),
+                        : Column(
+                            children: [
+                              170.verticalSpace,
+                              QiblaDirectionWidget(),
+                            ],
                           );
                   },
                 ),
@@ -360,21 +336,17 @@ class ManualLocation extends StatelessWidget {
                         valueListenable: aralDirectionNorth,
                         builder: (context, value, _) {
                           return Padding(
-                            padding: const EdgeInsets.only(
-                              top: 10,
-                              left: 20,
-                              right: 20,
-                              bottom: 20,
-                            ),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20.w, vertical: 20.h),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: darkblue.withOpacity(0.5),
-                                fixedSize: const Size(
-                                  400,
-                                  50,
+                                fixedSize: Size(
+                                  350.w,
+                                  50.h,
                                 ),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(15.r),
                                 ),
                               ),
                               onPressed: () {
@@ -405,9 +377,9 @@ class ManualLocation extends StatelessWidget {
                               child: Text(
                                 'Get Samth',
                                 style: GoogleFonts.poppins(
-                                  textStyle: const TextStyle(
+                                  textStyle: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 25,
+                                    fontSize: 25.sp,
                                   ),
                                 ),
                               ),
@@ -418,8 +390,8 @@ class ManualLocation extends StatelessWidget {
                     })
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 

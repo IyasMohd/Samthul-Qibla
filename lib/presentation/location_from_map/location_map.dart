@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:samthul_qibla/application/location_map/location_map_bloc.dart';
@@ -11,8 +12,8 @@ class LocationMap extends StatelessWidget {
   LocationMap({Key? key}) : super(key: key);
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    target: LatLng(11.42796133580664, 75.085749655962),
+    zoom: 0.0,
   );
 
   final Marker marker = const Marker(
@@ -23,35 +24,52 @@ class LocationMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<LocationMapBloc>(context)
-        .add(const LocationMapEvent.refreshUI());
-    // final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
+
+    // BlocProvider.of<LocationMapBloc>(context)
+    //     .add(const LocationMapEvent.refreshUI());
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.black,
+            size: 30.sp,
           ),
         ),
-        title: const Text(
+        title: Text(
           'QIBLA DIRECTION',
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            letterSpacing: 3.5.w,
+            fontWeight: FontWeight.bold,
+            fontSize: 18.sp,
+          ),
         ),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 10),
+            padding: EdgeInsets.only(right: 8.w),
             child: Icon(
               Icons.info_outline_rounded,
-              // size: 26,
-              // color: Colors.black,
+              color: Colors.black,
+              size: 27.sp,
             ),
           )
         ],
       ),
       body: SlidingUpPanel(
         backdropEnabled: true,
-        boxShadow: const <BoxShadow>[
-          BoxShadow(blurRadius: 8.0, color: Color.fromRGBO(0, 0, 0, 0.05))
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            blurRadius: 8.0.r,
+            color: Color.fromRGBO(
+              0,
+              0,
+              0,
+              0.05,
+            ),
+          )
         ],
         onPanelOpened: () {
           isDrawerOpen.value = true;
@@ -59,8 +77,8 @@ class LocationMap extends StatelessWidget {
         onPanelClosed: () {
           isDrawerOpen.value = false;
         },
-        minHeight: 75,
-        maxHeight: 400,
+        minHeight: 65.h,
+        maxHeight: 380.h,
         body: Stack(
           children: [
             ValueListenableBuilder(
@@ -91,7 +109,7 @@ class LocationMap extends StatelessWidget {
         // header:
         color: Colors.transparent,
         panel: Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: 15.h),
           child: BlocBuilder<LocationMapBloc, LocationMapState>(
               builder: (context, state) {
             return Wrap(
@@ -99,26 +117,24 @@ class LocationMap extends StatelessWidget {
                 Column(
                   children: [
                     Container(
-                      height: 5,
-                      width: 100,
+                      height: 4.h,
+                      width: 70.w,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    3.verticalSpace,
                     ValueListenableBuilder(
                         valueListenable: isDrawerOpen,
                         builder: (context, value, _) {
                           return Container(
                               width: double.infinity,
-                              height: 400,
-                              decoration: const BoxDecoration(
+                              height: 380.h,
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20.0),
-                                  topRight: Radius.circular(20.0),
+                                  topLeft: Radius.circular(20.0.r),
+                                  topRight: Radius.circular(20.0.r),
                                 ),
                                 color: darkblue,
                               ),
@@ -129,24 +145,25 @@ class LocationMap extends StatelessWidget {
                                             "Select a location from Map",
                                             textAlign: TextAlign.center,
                                             style: GoogleFonts.poppins(
-                                              textStyle: const TextStyle(
+                                              textStyle: TextStyle(
                                                 color: lightblue,
-                                                fontSize: 20,
+                                                fontSize: 15.sp,
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
                                           ),
                                         )
                                       : Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15),
+                                          padding: EdgeInsets.only(
+                                            top: 12.h,
+                                          ),
                                           child: Text(
                                             "Select a location from Map",
                                             textAlign: TextAlign.center,
                                             style: GoogleFonts.poppins(
-                                              textStyle: const TextStyle(
+                                              textStyle: TextStyle(
                                                 color: lightblue,
-                                                fontSize: 20,
+                                                fontSize: 15.sp,
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
@@ -161,136 +178,157 @@ class LocationMap extends StatelessWidget {
                                               'An Error Occured',
                                               textAlign: TextAlign.center,
                                               style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
+                                                textStyle: TextStyle(
                                                   color: lightblue,
-                                                  fontSize: 20,
+                                                  fontSize: 15.sp,
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),
                                             ))
-                                          : Column(
-                                              children: [
-                                                const SizedBox(
-                                                  height: 20,
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 30),
+                                          : isDrawerOpen.value
+                                              ? Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    // SizedBox(
+                                                    //   height:
+                                                    //       size.height * 0.013,
+                                                    // ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 30.w),
+                                                      child: Text(
+                                                        state.address.address,
+                                                        maxLines: 4,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          textStyle: TextStyle(
+                                                            color: lightblue,
+                                                            fontSize: 15.sp,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    25.verticalSpace,
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .location_on_sharp,
+                                                          color: lightblue,
+                                                          size: 18.sp,
+                                                        ),
+                                                        7.horizontalSpace,
+                                                        Text(
+                                                          "Latitude :     ${state.value.latittude}",
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                            textStyle:
+                                                                TextStyle(
+                                                              color: lightblue,
+                                                              fontSize: 16.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    10.verticalSpace,
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .location_on_sharp,
+                                                          color: lightblue,
+                                                          size: 18.sp,
+                                                        ),
+                                                        7.horizontalSpace,
+                                                        Text(
+                                                          "Longitude :     ${state.value.longitude}",
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                            textStyle:
+                                                                TextStyle(
+                                                              color: lightblue,
+                                                              fontSize: 16.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    25.verticalSpace,
+                                                    Column(
+                                                      children: [
+                                                        Text(
+                                                          'QIBLA DIRECTION',
+                                                          style: TextStyle(
+                                                            color: lightblue,
+                                                            fontSize: 15.sp,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        5.verticalSpace,
+                                                        Text(
+                                                          state.value
+                                                              .samthulQibla,
+                                                          style: TextStyle(
+                                                              color: lightblue,
+                                                              fontSize: 30.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w900),
+                                                        ),
+                                                        10.verticalSpace,
+                                                        Text(
+                                                          state.value.direction,
+                                                          style: TextStyle(
+                                                              color: lightblue,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 14.sp),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
+                                                )
+                                              : Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: 12.h,
+                                                    right: 40.w,
+                                                    left: 40.w,
+                                                  ),
                                                   child: Text(
                                                     state.address.address,
                                                     textAlign: TextAlign.center,
+                                                    maxLines: 1,
                                                     style: GoogleFonts.poppins(
-                                                      textStyle:
-                                                          const TextStyle(
+                                                      textStyle: TextStyle(
                                                         color: lightblue,
-                                                        fontSize: 20,
+                                                        fontSize: 15.sp,
                                                         fontWeight:
                                                             FontWeight.w400,
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 20,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.location_on_sharp,
-                                                      color: lightblue,
-                                                      size: 20,
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Text(
-                                                      "Latitude :     ${state.value.latittude}",
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                        textStyle:
-                                                            const TextStyle(
-                                                          color: lightblue,
-                                                          fontSize: 25,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.location_on_sharp,
-                                                      color: lightblue,
-                                                      size: 20,
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Text(
-                                                      "Longitude :     ${state.value.longitude}",
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                        textStyle:
-                                                            const TextStyle(
-                                                          color: lightblue,
-                                                          fontSize: 25,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 40,
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    const Text(
-                                                      'QIBLA DIRECTION',
-                                                      style: TextStyle(
-                                                        color: lightblue,
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 20,
-                                                    ),
-                                                    Text(
-                                                      state.value.samthulQibla,
-                                                      style: const TextStyle(
-                                                          color: lightblue,
-                                                          fontSize: 45,
-                                                          fontWeight:
-                                                              FontWeight.w900),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      state.value.direction,
-                                                      style: const TextStyle(
-                                                          color: lightblue,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ));
+                                                ));
                         }),
                   ],
                 ),

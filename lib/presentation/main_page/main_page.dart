@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samthul_qibla/core/asset_manager.dart';
 import 'package:samthul_qibla/core/colors/colors.dart';
@@ -15,20 +16,17 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: backGround,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 0.5.w),
           child: Column(
             children: [
-              const SizedBox(
-                height: 20,
-              ),
+              2.5.verticalSpace,
               const AppBarMainPage(),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 27.h,
               ),
               GestureDetector(
                 onTap: () {
@@ -39,22 +37,22 @@ class MainPage extends StatelessWidget {
                   );
                 },
                 child: DashBoardListContainer(
-                  size: size,
                   child: Stack(
                     children: [
                       Positioned(
                         top: 0,
+                        bottom: 0,
                         child: Icon(
                           Icons.gps_fixed_rounded,
                           color: Colors.black.withOpacity(0.2),
-                          size: 160,
+                          size: 130.sp,
                         ),
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(18)),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(16.r)),
                           child: Image.asset(
                             AssetManager.compassImage,
                             scale: 7,
@@ -62,15 +60,20 @@ class MainPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 45, left: 30),
+                        padding: EdgeInsets.only(
+                          // top: size.height * 0.045,
+                          left: 20.w,
+                          right: 120.w,
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               ' Qibla direction from your ',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -78,7 +81,7 @@ class MainPage extends StatelessWidget {
                               ' Current Location',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 25,
+                                fontSize: 17.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -89,19 +92,16 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              8.verticalSpace,
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: ((context) =>  LocationMap()),
+                      builder: ((context) => LocationMap()),
                     ),
                   );
                 },
                 child: DashBoardListContainer(
-                  size: size,
                   child: Stack(
                     children: [
                       Positioned(
@@ -110,14 +110,14 @@ class MainPage extends StatelessWidget {
                         child: Icon(
                           Icons.location_pin,
                           color: Colors.black.withOpacity(0.2),
-                          size: 160,
+                          size: 140.sp,
                         ),
                       ),
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(18)),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(16.r)),
                           child: Image.asset(
                             AssetManager.mapImage,
                             scale: 7,
@@ -125,15 +125,20 @@ class MainPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 33, left: 130),
+                        padding: EdgeInsets.only(
+                          // top: size.height * 0.025,
+                          left: 120.w,
+                          right: 20.w,
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Qibla direction from location which selected from',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -141,7 +146,7 @@ class MainPage extends StatelessWidget {
                               'Google Map',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 25,
+                                fontSize: 17.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -152,9 +157,7 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              8.verticalSpace,
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
@@ -164,22 +167,22 @@ class MainPage extends StatelessWidget {
                   );
                 },
                 child: DashBoardListContainer(
-                  size: size,
                   child: Stack(
                     children: [
                       Positioned(
                         top: 0,
+                        bottom: 0,
                         child: Icon(
                           Icons.gps_fixed_rounded,
                           color: Colors.black.withOpacity(0.2),
-                          size: 160,
+                          size: 130.sp,
                         ),
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(18)),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(16.r)),
                           child: Image.asset(
                             AssetManager.rubul_mujayyab,
                             scale: 7,
@@ -187,15 +190,20 @@ class MainPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 45, left: 30),
+                        padding: EdgeInsets.only(
+                          // top: size.height * 0.045,
+                          left: 20.w,
+                          right: 120.w,
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               ' Qibla direction with ',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -203,7 +211,7 @@ class MainPage extends StatelessWidget {
                               ' Coordinates',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 25,
+                                fontSize: 17.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

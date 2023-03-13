@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:samthul_qibla/application/manual_location/manual_location_bloc.dart';
 
 class QiblaDirectionWidget extends StatelessWidget {
@@ -13,36 +14,29 @@ class QiblaDirectionWidget extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            const Text(
+            Text(
               'QIBLA DIRECTION',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 25,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
+            10.verticalSpace,
             Text(
               state.value.samthulQibla,
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
-                  fontSize: 45,
+                  fontSize: 32.sp,
                   fontWeight: FontWeight.w900),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            10.verticalSpace,
             Text(
               state.value.direction,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 23,
+                fontSize: 15.sp,
               ),
-            ),
-            const SizedBox(
-              height: 20,
             ),
           ],
         );
