@@ -9,7 +9,6 @@ class DashBoardListContainer extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-
   final Widget child;
 
   @override

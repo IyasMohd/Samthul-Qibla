@@ -195,134 +195,125 @@ class CurrentLocation extends StatelessWidget {
     );
   }
 }
-              
-            
 
-            // Padding(
-            //                     padding: const EdgeInsets.only(
-            //                         top: 60, bottom: 0.5, left: 25),
-            //                     child: Row(
-            //                       children: [
-            //                         const Icon(
-            //                           Icons.location_on_sharp,
-            //                           color: Colors.red,
-            //                         ),
-            //                         Text(
-            //                           'Longitude',
-            //                           style: GoogleFonts.poppins(
-            //                             textStyle: const TextStyle(
-            //                               color: Colors.white,
-            //                               fontSize: 20,
-            //                               fontWeight: FontWeight.bold,
-            //                             ),
-            //                           ),
-            //                         ),
-            //                       ],
-            //                     ),
-            //                   ),
-            //                   const SizedBox(
-            //                     height: 20,
-            //                   ),
-            //                   Text(
-            //                     state.value.longitude,
-            //                     style: GoogleFonts.poppins(
-            //                       textStyle: const TextStyle(
-            //                         color: Colors.white,
-            //                         fontSize: 20,
-            //                         fontWeight: FontWeight.bold,
-            //                       ),
-            //                     ),
-            //                   ),
-            //                   Padding(
-            //                     padding: const EdgeInsets.only(top: 100),
-            //                     child: Text(
-            //                       state.value.samthulQibla,
-            //                       overflow: TextOverflow.ellipsis,
-            //                       style: GoogleFonts.poppins(
-            //                         textStyle: const TextStyle(
-            //                           color: Colors.white,
-            //                           fontSize: 50,
-            //                           fontWeight: FontWeight.bold,
-            //                         ),
-            //                       ),
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //   ),
-            // );
-          
+// Padding(
+//                     padding: const EdgeInsets.only(
+//                         top: 60, bottom: 0.5, left: 25),
+//                     child: Row(
+//                       children: [
+//                         const Icon(
+//                           Icons.location_on_sharp,
+//                           color: Colors.red,
+//                         ),
+//                         Text(
+//                           'Longitude',
+//                           style: GoogleFonts.poppins(
+//                             textStyle: const TextStyle(
+//                               color: Colors.white,
+//                               fontSize: 20,
+//                               fontWeight: FontWeight.bold,
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                   const SizedBox(
+//                     height: 20,
+//                   ),
+//                   Text(
+//                     state.value.longitude,
+//                     style: GoogleFonts.poppins(
+//                       textStyle: const TextStyle(
+//                         color: Colors.white,
+//                         fontSize: 20,
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                   ),
+//                   Padding(
+//                     padding: const EdgeInsets.only(top: 100),
+//                     child: Text(
+//                       state.value.samthulQibla,
+//                       overflow: TextOverflow.ellipsis,
+//                       style: GoogleFonts.poppins(
+//                         textStyle: const TextStyle(
+//                           color: Colors.white,
+//                           fontSize: 50,
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//   ),
+// );
 
+// Padding(
+//   padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+//   child: ElevatedButton(
+//     style: ElevatedButton.styleFrom(
+//         backgroundColor: Colors.white.withOpacity(0.5),
+//         fixedSize: const Size(400, 50),
+//         shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(30))),
+//     onPressed: () async {
+//       final currentLocation = await _getCurrentLocation();
+//       final thoolulbalad =
+//           convertNegativeintoPositive(currentLocation.latitude);
 
-          
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-              //   child: ElevatedButton(
-              //     style: ElevatedButton.styleFrom(
-              //         backgroundColor: Colors.white.withOpacity(0.5),
-              //         fixedSize: const Size(400, 50),
-              //         shape: RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(30))),
-              //     onPressed: () async {
-              //       final currentLocation = await _getCurrentLocation();
-              //       final thoolulbalad =
-              //           convertNegativeintoPositive(currentLocation.latitude);
+//       final aralulBalad = convertNegativeintoPositive(
+//           currentLocation.longitude);
+//       const araluMakka = 21.41666667;
+//       final thoolDirectionEast =
+//           thoolAralDirection(thoolulbalad);
+//       final aralDirectionNorth =
+//           thoolAralDirection(aralulBalad);
+//       final qausuSsamth = samthulQibla(aralulBalad, araluMakka,
+//           thoolulbalad, thoolDirectionEast, aralDirectionNorth);
+//       final qausuSsamthConverted =
+//           convertDecimalTolatlong(qausuSsamth);
+//       setState(() {
+//         result = qausuSsamthConverted;
+//       });
+//     },
+//     child: Text(
+//       'Get Samth',
+//       style: GoogleFonts.poppins(
+//           textStyle: const TextStyle(color: Colors.black)),
+//     ),
+//   ),
+// ),
 
-              //       final aralulBalad = convertNegativeintoPositive(
-              //           currentLocation.longitude);
-              //       const araluMakka = 21.41666667;
-              //       final thoolDirectionEast =
-              //           thoolAralDirection(thoolulbalad);
-              //       final aralDirectionNorth =
-              //           thoolAralDirection(aralulBalad);
-              //       final qausuSsamth = samthulQibla(aralulBalad, araluMakka,
-              //           thoolulbalad, thoolDirectionEast, aralDirectionNorth);
-              //       final qausuSsamthConverted =
-              //           convertDecimalTolatlong(qausuSsamth);
-              //       setState(() {
-              //         result = qausuSsamthConverted;
-              //       });
-              //     },
-              //     child: Text(
-              //       'Get Samth',
-              //       style: GoogleFonts.poppins(
-              //           textStyle: const TextStyle(color: Colors.black)),
-              //     ),
-              //   ),
-              // ),
-
-              
-
-          // Align(
-          //   alignment: Alignment.topRight,
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(top: 40, right: 20),
-          //     child: Column(
-          //       children: [
-          //         FloatingActionButton.small(
-          //           onPressed: () {},
-          //           child: const Icon(Icons.location_searching_outlined),
-          //         ),
-          //         const SizedBox(
-          //           height: 20,
-          //         ),
-          //         FloatingActionButton.small(
-          //           onPressed: () {},
-          //           child: const Icon(Icons.location_searching_outlined),
-          //         ),
-          //         const SizedBox(
-          //           height: 20,
-          //         ),
-          //         FloatingActionButton.small(
-          //           onPressed: () {},
-          //           child: const Icon(Icons.location_searching_outlined),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-        
-  
+// Align(
+//   alignment: Alignment.topRight,
+//   child: Padding(
+//     padding: const EdgeInsets.only(top: 40, right: 20),
+//     child: Column(
+//       children: [
+//         FloatingActionButton.small(
+//           onPressed: () {},
+//           child: const Icon(Icons.location_searching_outlined),
+//         ),
+//         const SizedBox(
+//           height: 20,
+//         ),
+//         FloatingActionButton.small(
+//           onPressed: () {},
+//           child: const Icon(Icons.location_searching_outlined),
+//         ),
+//         const SizedBox(
+//           height: 20,
+//         ),
+//         FloatingActionButton.small(
+//           onPressed: () {},
+//           child: const Icon(Icons.location_searching_outlined),
+//         ),
+//       ],
+//     ),
+//   ),
+// ),
 
 //   void initialCurrentLocation() async {
 //     final currentLocation = await _getCurrentLocation();

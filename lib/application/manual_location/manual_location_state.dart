@@ -8,11 +8,11 @@ class ManualLocationState with _$ManualLocationState {
   }) = _ManualLocationState;
   factory ManualLocationState.initial() {
     const initialState = ManualLocationState(
-      isDetailsEntered: false,
+        isDetailsEntered: false,
         value: ManualLocationModel(
-      samthulQibla: "0° 0' 0''",
-      direction: '',
-    ));
+          samthulQibla: "0° 0' 0''",
+          direction: '',
+        ));
     return initialState;
   }
 }

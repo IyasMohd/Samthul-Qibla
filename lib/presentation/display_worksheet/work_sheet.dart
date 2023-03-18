@@ -31,7 +31,6 @@ class WorkSheet extends StatelessWidget {
                   title: 'طول مكة',
                   value: "(39.82611111°)  39° 54'",
                 ),
-
               ],
             ),
           ),

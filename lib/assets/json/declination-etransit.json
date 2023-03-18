@@ -1,0 +1,13 @@
+[
+    {
+     "Day": 1,
+     "Sun Declination": 23.0,
+     "Ephemeris Transit": "00000000120326"
+    },
+
+    {
+        "Day": 2,
+        "Sun Declination": 24.0,
+        "Ephemeris Transit": "00000000120426"
+       }
+   ]

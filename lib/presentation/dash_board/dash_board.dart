@@ -6,6 +6,7 @@ import 'package:samthul_qibla/core/colors/colors.dart';
 import 'package:samthul_qibla/presentation/dash_board/widgets/appbar_widget.dart';
 import 'package:samthul_qibla/presentation/dash_board/widgets/dashboard_list_container.dart';
 import 'package:samthul_qibla/presentation/main_page/main_page.dart';
+import 'package:samthul_qibla/presentation/namaz_time/namaz_time.dart';
 
 class DashBoard extends StatelessWidget {
   DashBoard({Key? key}) : super(key: key);
@@ -96,14 +97,21 @@ class DashBoard extends StatelessWidget {
                 ),
               ),
               8.verticalSpace,
-              DashBoardListContainer(
-                child: Center(
-                  child: Text(
-                    'Coming Soon...',
-                    style: GoogleFonts.poppins(
-                      color: lightblue,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: ((context) => NamazTime()),
+                  ),
+                ),
+                child: DashBoardListContainer(
+                  child: Center(
+                    child: Text(
+                      'Coming Soon...',
+                      style: GoogleFonts.poppins(
+                        color: lightblue,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
