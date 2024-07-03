@@ -41,7 +41,7 @@ dependencies:
   geolocator: ^9.0.2
   get_it: ^7.2.0
   google_api_headers: ^1.1.1
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.4
   google_maps_flutter: ^2.2.1
   google_maps_webservice: ^0.0.20-nullsafety.5
   injectable: ^2.1.0

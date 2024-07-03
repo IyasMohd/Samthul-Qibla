@@ -12,7 +12,7 @@ part of 'location_map_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LocationMapEvent {
@@ -75,25 +75,25 @@ class _$LocationMapEventCopyWithImpl<$Res, $Val extends LocationMapEvent>
 }
 
 /// @nodoc
-abstract class _$$GetSamthFromMapCopyWith<$Res> {
-  factory _$$GetSamthFromMapCopyWith(
-          _$GetSamthFromMap value, $Res Function(_$GetSamthFromMap) then) =
-      __$$GetSamthFromMapCopyWithImpl<$Res>;
+abstract class _$$GetSamthFromMapImplCopyWith<$Res> {
+  factory _$$GetSamthFromMapImplCopyWith(_$GetSamthFromMapImpl value,
+          $Res Function(_$GetSamthFromMapImpl) then) =
+      __$$GetSamthFromMapImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetSamthFromMapCopyWithImpl<$Res>
-    extends _$LocationMapEventCopyWithImpl<$Res, _$GetSamthFromMap>
-    implements _$$GetSamthFromMapCopyWith<$Res> {
-  __$$GetSamthFromMapCopyWithImpl(
-      _$GetSamthFromMap _value, $Res Function(_$GetSamthFromMap) _then)
+class __$$GetSamthFromMapImplCopyWithImpl<$Res>
+    extends _$LocationMapEventCopyWithImpl<$Res, _$GetSamthFromMapImpl>
+    implements _$$GetSamthFromMapImplCopyWith<$Res> {
+  __$$GetSamthFromMapImplCopyWithImpl(
+      _$GetSamthFromMapImpl _value, $Res Function(_$GetSamthFromMapImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GetSamthFromMap implements GetSamthFromMap {
-  const _$GetSamthFromMap();
+class _$GetSamthFromMapImpl implements GetSamthFromMap {
+  const _$GetSamthFromMapImpl();
 
   @override
   String toString() {
@@ -101,9 +101,9 @@ class _$GetSamthFromMap implements GetSamthFromMap {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetSamthFromMap);
+        (other.runtimeType == runtimeType && other is _$GetSamthFromMapImpl);
   }
 
   @override
@@ -173,29 +173,29 @@ class _$GetSamthFromMap implements GetSamthFromMap {
 }
 
 abstract class GetSamthFromMap implements LocationMapEvent {
-  const factory GetSamthFromMap() = _$GetSamthFromMap;
+  const factory GetSamthFromMap() = _$GetSamthFromMapImpl;
 }
 
 /// @nodoc
-abstract class _$$RefreshUICopyWith<$Res> {
-  factory _$$RefreshUICopyWith(
-          _$RefreshUI value, $Res Function(_$RefreshUI) then) =
-      __$$RefreshUICopyWithImpl<$Res>;
+abstract class _$$RefreshUIImplCopyWith<$Res> {
+  factory _$$RefreshUIImplCopyWith(
+          _$RefreshUIImpl value, $Res Function(_$RefreshUIImpl) then) =
+      __$$RefreshUIImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RefreshUICopyWithImpl<$Res>
-    extends _$LocationMapEventCopyWithImpl<$Res, _$RefreshUI>
-    implements _$$RefreshUICopyWith<$Res> {
-  __$$RefreshUICopyWithImpl(
-      _$RefreshUI _value, $Res Function(_$RefreshUI) _then)
+class __$$RefreshUIImplCopyWithImpl<$Res>
+    extends _$LocationMapEventCopyWithImpl<$Res, _$RefreshUIImpl>
+    implements _$$RefreshUIImplCopyWith<$Res> {
+  __$$RefreshUIImplCopyWithImpl(
+      _$RefreshUIImpl _value, $Res Function(_$RefreshUIImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RefreshUI implements RefreshUI {
-  const _$RefreshUI();
+class _$RefreshUIImpl implements RefreshUI {
+  const _$RefreshUIImpl();
 
   @override
   String toString() {
@@ -203,9 +203,9 @@ class _$RefreshUI implements RefreshUI {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RefreshUI);
+        (other.runtimeType == runtimeType && other is _$RefreshUIImpl);
   }
 
   @override
@@ -275,7 +275,7 @@ class _$RefreshUI implements RefreshUI {
 }
 
 abstract class RefreshUI implements LocationMapEvent {
-  const factory RefreshUI() = _$RefreshUI;
+  const factory RefreshUI() = _$RefreshUIImpl;
 }
 
 /// @nodoc
@@ -350,11 +350,11 @@ class _$LocationMapStateCopyWithImpl<$Res, $Val extends LocationMapState>
 }
 
 /// @nodoc
-abstract class _$$_LocationMapStateCopyWith<$Res>
+abstract class _$$LocationMapStateImplCopyWith<$Res>
     implements $LocationMapStateCopyWith<$Res> {
-  factory _$$_LocationMapStateCopyWith(
-          _$_LocationMapState value, $Res Function(_$_LocationMapState) then) =
-      __$$_LocationMapStateCopyWithImpl<$Res>;
+  factory _$$LocationMapStateImplCopyWith(_$LocationMapStateImpl value,
+          $Res Function(_$LocationMapStateImpl) then) =
+      __$$LocationMapStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -366,11 +366,11 @@ abstract class _$$_LocationMapStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LocationMapStateCopyWithImpl<$Res>
-    extends _$LocationMapStateCopyWithImpl<$Res, _$_LocationMapState>
-    implements _$$_LocationMapStateCopyWith<$Res> {
-  __$$_LocationMapStateCopyWithImpl(
-      _$_LocationMapState _value, $Res Function(_$_LocationMapState) _then)
+class __$$LocationMapStateImplCopyWithImpl<$Res>
+    extends _$LocationMapStateCopyWithImpl<$Res, _$LocationMapStateImpl>
+    implements _$$LocationMapStateImplCopyWith<$Res> {
+  __$$LocationMapStateImplCopyWithImpl(_$LocationMapStateImpl _value,
+      $Res Function(_$LocationMapStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -382,7 +382,7 @@ class __$$_LocationMapStateCopyWithImpl<$Res>
     Object? value = null,
     Object? address = null,
   }) {
-    return _then(_$_LocationMapState(
+    return _then(_$LocationMapStateImpl(
       isLocationSelected: null == isLocationSelected
           ? _value.isLocationSelected
           : isLocationSelected // ignore: cast_nullable_to_non_nullable
@@ -409,8 +409,8 @@ class __$$_LocationMapStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LocationMapState implements _LocationMapState {
-  const _$_LocationMapState(
+class _$LocationMapStateImpl implements _LocationMapState {
+  const _$LocationMapStateImpl(
       {required this.isLocationSelected,
       required this.isLoading,
       required this.isError,
@@ -434,10 +434,10 @@ class _$_LocationMapState implements _LocationMapState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LocationMapState &&
+            other is _$LocationMapStateImpl &&
             (identical(other.isLocationSelected, isLocationSelected) ||
                 other.isLocationSelected == isLocationSelected) &&
             (identical(other.isLoading, isLoading) ||
@@ -454,8 +454,9 @@ class _$_LocationMapState implements _LocationMapState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LocationMapStateCopyWith<_$_LocationMapState> get copyWith =>
-      __$$_LocationMapStateCopyWithImpl<_$_LocationMapState>(this, _$identity);
+  _$$LocationMapStateImplCopyWith<_$LocationMapStateImpl> get copyWith =>
+      __$$LocationMapStateImplCopyWithImpl<_$LocationMapStateImpl>(
+          this, _$identity);
 }
 
 abstract class _LocationMapState implements LocationMapState {
@@ -464,7 +465,7 @@ abstract class _LocationMapState implements LocationMapState {
       required final bool isLoading,
       required final bool isError,
       required final LocationMapModel value,
-      required final AddressModel address}) = _$_LocationMapState;
+      required final AddressModel address}) = _$LocationMapStateImpl;
 
   @override
   bool get isLocationSelected;
@@ -478,6 +479,6 @@ abstract class _LocationMapState implements LocationMapState {
   AddressModel get address;
   @override
   @JsonKey(ignore: true)
-  _$$_LocationMapStateCopyWith<_$_LocationMapState> get copyWith =>
+  _$$LocationMapStateImplCopyWith<_$LocationMapStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

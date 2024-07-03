@@ -12,7 +12,7 @@ part of 'current_location_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CurrentLocationEvent {
@@ -70,25 +70,25 @@ class _$CurrentLocationEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_InitializeCopyWith<$Res> {
-  factory _$$_InitializeCopyWith(
-          _$_Initialize value, $Res Function(_$_Initialize) then) =
-      __$$_InitializeCopyWithImpl<$Res>;
+abstract class _$$InitializeImplCopyWith<$Res> {
+  factory _$$InitializeImplCopyWith(
+          _$InitializeImpl value, $Res Function(_$InitializeImpl) then) =
+      __$$InitializeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitializeCopyWithImpl<$Res>
-    extends _$CurrentLocationEventCopyWithImpl<$Res, _$_Initialize>
-    implements _$$_InitializeCopyWith<$Res> {
-  __$$_InitializeCopyWithImpl(
-      _$_Initialize _value, $Res Function(_$_Initialize) _then)
+class __$$InitializeImplCopyWithImpl<$Res>
+    extends _$CurrentLocationEventCopyWithImpl<$Res, _$InitializeImpl>
+    implements _$$InitializeImplCopyWith<$Res> {
+  __$$InitializeImplCopyWithImpl(
+      _$InitializeImpl _value, $Res Function(_$InitializeImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initialize implements _Initialize {
-  const _$_Initialize();
+class _$InitializeImpl implements _Initialize {
+  const _$InitializeImpl();
 
   @override
   String toString() {
@@ -96,9 +96,9 @@ class _$_Initialize implements _Initialize {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initialize);
+        (other.runtimeType == runtimeType && other is _$InitializeImpl);
   }
 
   @override
@@ -162,7 +162,7 @@ class _$_Initialize implements _Initialize {
 }
 
 abstract class _Initialize implements CurrentLocationEvent {
-  const factory _Initialize() = _$_Initialize;
+  const factory _Initialize() = _$InitializeImpl;
 }
 
 /// @nodoc
@@ -221,22 +221,22 @@ class _$CurrentLocationStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CurrentLocationStateCopyWith<$Res>
+abstract class _$$CurrentLocationStateImplCopyWith<$Res>
     implements $CurrentLocationStateCopyWith<$Res> {
-  factory _$$_CurrentLocationStateCopyWith(_$_CurrentLocationState value,
-          $Res Function(_$_CurrentLocationState) then) =
-      __$$_CurrentLocationStateCopyWithImpl<$Res>;
+  factory _$$CurrentLocationStateImplCopyWith(_$CurrentLocationStateImpl value,
+          $Res Function(_$CurrentLocationStateImpl) then) =
+      __$$CurrentLocationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isLoading, bool isError, CurrentLocationModel value});
 }
 
 /// @nodoc
-class __$$_CurrentLocationStateCopyWithImpl<$Res>
-    extends _$CurrentLocationStateCopyWithImpl<$Res, _$_CurrentLocationState>
-    implements _$$_CurrentLocationStateCopyWith<$Res> {
-  __$$_CurrentLocationStateCopyWithImpl(_$_CurrentLocationState _value,
-      $Res Function(_$_CurrentLocationState) _then)
+class __$$CurrentLocationStateImplCopyWithImpl<$Res>
+    extends _$CurrentLocationStateCopyWithImpl<$Res, _$CurrentLocationStateImpl>
+    implements _$$CurrentLocationStateImplCopyWith<$Res> {
+  __$$CurrentLocationStateImplCopyWithImpl(_$CurrentLocationStateImpl _value,
+      $Res Function(_$CurrentLocationStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -246,7 +246,7 @@ class __$$_CurrentLocationStateCopyWithImpl<$Res>
     Object? isError = null,
     Object? value = null,
   }) {
-    return _then(_$_CurrentLocationState(
+    return _then(_$CurrentLocationStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -265,8 +265,8 @@ class __$$_CurrentLocationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CurrentLocationState implements _CurrentLocationState {
-  const _$_CurrentLocationState(
+class _$CurrentLocationStateImpl implements _CurrentLocationState {
+  const _$CurrentLocationStateImpl(
       {required this.isLoading, required this.isError, required this.value});
 
   @override
@@ -282,10 +282,10 @@ class _$_CurrentLocationState implements _CurrentLocationState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CurrentLocationState &&
+            other is _$CurrentLocationStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
@@ -298,16 +298,17 @@ class _$_CurrentLocationState implements _CurrentLocationState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CurrentLocationStateCopyWith<_$_CurrentLocationState> get copyWith =>
-      __$$_CurrentLocationStateCopyWithImpl<_$_CurrentLocationState>(
-          this, _$identity);
+  _$$CurrentLocationStateImplCopyWith<_$CurrentLocationStateImpl>
+      get copyWith =>
+          __$$CurrentLocationStateImplCopyWithImpl<_$CurrentLocationStateImpl>(
+              this, _$identity);
 }
 
 abstract class _CurrentLocationState implements CurrentLocationState {
   const factory _CurrentLocationState(
       {required final bool isLoading,
       required final bool isError,
-      required final CurrentLocationModel value}) = _$_CurrentLocationState;
+      required final CurrentLocationModel value}) = _$CurrentLocationStateImpl;
 
   @override
   bool get isLoading;
@@ -317,6 +318,6 @@ abstract class _CurrentLocationState implements CurrentLocationState {
   CurrentLocationModel get value;
   @override
   @JsonKey(ignore: true)
-  _$$_CurrentLocationStateCopyWith<_$_CurrentLocationState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CurrentLocationStateImplCopyWith<_$CurrentLocationStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -1,11 +1,15 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:samthul_qibla/core/colors/colors.dart';
-import 'package:samthul_qibla/infrastructure/prayer_time/prayer_time_repository.dart';
-import 'package:samthul_qibla/presentation/namaz_time/widgets/list_tile_namaz_time.dart';
-import 'package:samthul_qibla/presentation/namaz_time/widgets/settings/settings_page.dart';
+import 'package:samthul_qibla/presentation/prayer_time/widgets/list_tile_namaz_time.dart';
+import 'package:samthul_qibla/presentation/prayer_time/widgets/settings/settings_page.dart';
+
+import '../../application/bloc/prayer_time_bloc.dart';
 
 
 class NamazTime extends StatelessWidget {
@@ -72,7 +76,7 @@ class NamazTime extends StatelessWidget {
                       ),
                       20.verticalSpace,
                       Text(
-                        time,
+                        time, 
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 30.sp,
@@ -137,41 +141,45 @@ class NamazTime extends StatelessWidget {
             ],
           ),
           8.verticalSpace,
-          Card(
+          BlocBuilder<PrayerTimeBloc, PrayerTimeState>(
+            builder: (context, state) {
+              return Card(
             child: Column(
               children: [
                 ListTileNamazTime(
-                  vaqth: 'Zuhar',
-                  time: '12:00 pm',
+                  vaqth: 'Zuhr',
+                  time: state.value.zuhrTime.toString(),
                   onTapIcon: () {},
                   onTapTile: () {},
                 ),
                 ListTileNamazTime(
                   vaqth: 'Asar',
-                  time: '12:00 pm',
+                  time: state.value.asrTime.toString(),
                   onTapIcon: () {},
                   onTapTile: () {},
                 ),
                 ListTileNamazTime(
                   vaqth: 'Magrib',
-                  time: '12:00 pm',
+                  time: state.value.magribTime.toString(),
                   onTapIcon: () {},
                   onTapTile: () {},
                 ),
                 ListTileNamazTime(
                   vaqth: 'Isha',
-                  time: '12:00 pm',
+                  time: state.value.ishaTime.toString(),
                   onTapIcon: () {},
                   onTapTile: () {},
                 ),
                 ListTileNamazTime(
                   vaqth: 'Subh',
-                  time: '12:00 pm',
+                  time: state.value.subhTime.toString(),
                   onTapIcon: () {},
                   onTapTile: () {},
                 ),
               ],
             ),
+          );
+            },
           ),
           20.verticalSpace,
           ElevatedButton.icon(

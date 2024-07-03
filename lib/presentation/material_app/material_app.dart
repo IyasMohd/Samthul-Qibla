@@ -10,6 +10,8 @@ import 'package:samthul_qibla/core/colors/colors.dart';
 import 'package:samthul_qibla/domain/core/di/injectable.dart';
 import 'package:samthul_qibla/presentation/dash_board/dash_board.dart';
 
+import '../../application/bloc/prayer_time_bloc.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<ManualLocationBloc>(),
         ),
+        BlocProvider(create: (context) => getIt<PrayerTimeBloc>()
+        )
       ],
       child: ScreenUtilInit(
           designSize: const Size(360, 690),

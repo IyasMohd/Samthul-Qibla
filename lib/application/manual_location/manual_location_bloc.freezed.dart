@@ -12,7 +12,7 @@ part of 'manual_location_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ManualLocationEvent {
@@ -81,10 +81,10 @@ class _$ManualLocationEventCopyWithImpl<$Res, $Val extends ManualLocationEvent>
 }
 
 /// @nodoc
-abstract class _$$GetSamthCopyWith<$Res> {
-  factory _$$GetSamthCopyWith(
-          _$GetSamth value, $Res Function(_$GetSamth) then) =
-      __$$GetSamthCopyWithImpl<$Res>;
+abstract class _$$GetSamthImplCopyWith<$Res> {
+  factory _$$GetSamthImplCopyWith(
+          _$GetSamthImpl value, $Res Function(_$GetSamthImpl) then) =
+      __$$GetSamthImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {double aralulBalad,
@@ -94,10 +94,11 @@ abstract class _$$GetSamthCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$GetSamthCopyWithImpl<$Res>
-    extends _$ManualLocationEventCopyWithImpl<$Res, _$GetSamth>
-    implements _$$GetSamthCopyWith<$Res> {
-  __$$GetSamthCopyWithImpl(_$GetSamth _value, $Res Function(_$GetSamth) _then)
+class __$$GetSamthImplCopyWithImpl<$Res>
+    extends _$ManualLocationEventCopyWithImpl<$Res, _$GetSamthImpl>
+    implements _$$GetSamthImplCopyWith<$Res> {
+  __$$GetSamthImplCopyWithImpl(
+      _$GetSamthImpl _value, $Res Function(_$GetSamthImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,7 +109,7 @@ class __$$GetSamthCopyWithImpl<$Res>
     Object? directionEast = null,
     Object? directionNorth = null,
   }) {
-    return _then(_$GetSamth(
+    return _then(_$GetSamthImpl(
       aralulBalad: null == aralulBalad
           ? _value.aralulBalad
           : aralulBalad // ignore: cast_nullable_to_non_nullable
@@ -131,8 +132,8 @@ class __$$GetSamthCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetSamth implements GetSamth {
-  const _$GetSamth(
+class _$GetSamthImpl implements GetSamth {
+  const _$GetSamthImpl(
       {required this.aralulBalad,
       required this.thoolulBalad,
       required this.directionEast,
@@ -153,10 +154,10 @@ class _$GetSamth implements GetSamth {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetSamth &&
+            other is _$GetSamthImpl &&
             (identical(other.aralulBalad, aralulBalad) ||
                 other.aralulBalad == aralulBalad) &&
             (identical(other.thoolulBalad, thoolulBalad) ||
@@ -174,8 +175,8 @@ class _$GetSamth implements GetSamth {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetSamthCopyWith<_$GetSamth> get copyWith =>
-      __$$GetSamthCopyWithImpl<_$GetSamth>(this, _$identity);
+  _$$GetSamthImplCopyWith<_$GetSamthImpl> get copyWith =>
+      __$$GetSamthImplCopyWithImpl<_$GetSamthImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -252,37 +253,37 @@ abstract class GetSamth implements ManualLocationEvent {
       {required final double aralulBalad,
       required final double thoolulBalad,
       required final bool directionEast,
-      required final bool directionNorth}) = _$GetSamth;
+      required final bool directionNorth}) = _$GetSamthImpl;
 
   double get aralulBalad;
   double get thoolulBalad;
   bool get directionEast;
   bool get directionNorth;
   @JsonKey(ignore: true)
-  _$$GetSamthCopyWith<_$GetSamth> get copyWith =>
+  _$$GetSamthImplCopyWith<_$GetSamthImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RefreshUICopyWith<$Res> {
-  factory _$$RefreshUICopyWith(
-          _$RefreshUI value, $Res Function(_$RefreshUI) then) =
-      __$$RefreshUICopyWithImpl<$Res>;
+abstract class _$$RefreshUIImplCopyWith<$Res> {
+  factory _$$RefreshUIImplCopyWith(
+          _$RefreshUIImpl value, $Res Function(_$RefreshUIImpl) then) =
+      __$$RefreshUIImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RefreshUICopyWithImpl<$Res>
-    extends _$ManualLocationEventCopyWithImpl<$Res, _$RefreshUI>
-    implements _$$RefreshUICopyWith<$Res> {
-  __$$RefreshUICopyWithImpl(
-      _$RefreshUI _value, $Res Function(_$RefreshUI) _then)
+class __$$RefreshUIImplCopyWithImpl<$Res>
+    extends _$ManualLocationEventCopyWithImpl<$Res, _$RefreshUIImpl>
+    implements _$$RefreshUIImplCopyWith<$Res> {
+  __$$RefreshUIImplCopyWithImpl(
+      _$RefreshUIImpl _value, $Res Function(_$RefreshUIImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RefreshUI implements RefreshUI {
-  const _$RefreshUI();
+class _$RefreshUIImpl implements RefreshUI {
+  const _$RefreshUIImpl();
 
   @override
   String toString() {
@@ -290,9 +291,9 @@ class _$RefreshUI implements RefreshUI {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RefreshUI);
+        (other.runtimeType == runtimeType && other is _$RefreshUIImpl);
   }
 
   @override
@@ -368,7 +369,7 @@ class _$RefreshUI implements RefreshUI {
 }
 
 abstract class RefreshUI implements ManualLocationEvent {
-  const factory RefreshUI() = _$RefreshUI;
+  const factory RefreshUI() = _$RefreshUIImpl;
 }
 
 /// @nodoc
@@ -420,22 +421,22 @@ class _$ManualLocationStateCopyWithImpl<$Res, $Val extends ManualLocationState>
 }
 
 /// @nodoc
-abstract class _$$_ManualLocationStateCopyWith<$Res>
+abstract class _$$ManualLocationStateImplCopyWith<$Res>
     implements $ManualLocationStateCopyWith<$Res> {
-  factory _$$_ManualLocationStateCopyWith(_$_ManualLocationState value,
-          $Res Function(_$_ManualLocationState) then) =
-      __$$_ManualLocationStateCopyWithImpl<$Res>;
+  factory _$$ManualLocationStateImplCopyWith(_$ManualLocationStateImpl value,
+          $Res Function(_$ManualLocationStateImpl) then) =
+      __$$ManualLocationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isDetailsEntered, ManualLocationModel value});
 }
 
 /// @nodoc
-class __$$_ManualLocationStateCopyWithImpl<$Res>
-    extends _$ManualLocationStateCopyWithImpl<$Res, _$_ManualLocationState>
-    implements _$$_ManualLocationStateCopyWith<$Res> {
-  __$$_ManualLocationStateCopyWithImpl(_$_ManualLocationState _value,
-      $Res Function(_$_ManualLocationState) _then)
+class __$$ManualLocationStateImplCopyWithImpl<$Res>
+    extends _$ManualLocationStateCopyWithImpl<$Res, _$ManualLocationStateImpl>
+    implements _$$ManualLocationStateImplCopyWith<$Res> {
+  __$$ManualLocationStateImplCopyWithImpl(_$ManualLocationStateImpl _value,
+      $Res Function(_$ManualLocationStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -444,7 +445,7 @@ class __$$_ManualLocationStateCopyWithImpl<$Res>
     Object? isDetailsEntered = null,
     Object? value = null,
   }) {
-    return _then(_$_ManualLocationState(
+    return _then(_$ManualLocationStateImpl(
       isDetailsEntered: null == isDetailsEntered
           ? _value.isDetailsEntered
           : isDetailsEntered // ignore: cast_nullable_to_non_nullable
@@ -459,8 +460,8 @@ class __$$_ManualLocationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ManualLocationState implements _ManualLocationState {
-  const _$_ManualLocationState(
+class _$ManualLocationStateImpl implements _ManualLocationState {
+  const _$ManualLocationStateImpl(
       {required this.isDetailsEntered, required this.value});
 
   @override
@@ -474,10 +475,10 @@ class _$_ManualLocationState implements _ManualLocationState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ManualLocationState &&
+            other is _$ManualLocationStateImpl &&
             (identical(other.isDetailsEntered, isDetailsEntered) ||
                 other.isDetailsEntered == isDetailsEntered) &&
             (identical(other.value, value) || other.value == value));
@@ -489,15 +490,15 @@ class _$_ManualLocationState implements _ManualLocationState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ManualLocationStateCopyWith<_$_ManualLocationState> get copyWith =>
-      __$$_ManualLocationStateCopyWithImpl<_$_ManualLocationState>(
+  _$$ManualLocationStateImplCopyWith<_$ManualLocationStateImpl> get copyWith =>
+      __$$ManualLocationStateImplCopyWithImpl<_$ManualLocationStateImpl>(
           this, _$identity);
 }
 
 abstract class _ManualLocationState implements ManualLocationState {
   const factory _ManualLocationState(
       {required final bool isDetailsEntered,
-      required final ManualLocationModel value}) = _$_ManualLocationState;
+      required final ManualLocationModel value}) = _$ManualLocationStateImpl;
 
   @override
   bool get isDetailsEntered;
@@ -505,6 +506,6 @@ abstract class _ManualLocationState implements ManualLocationState {
   ManualLocationModel get value;
   @override
   @JsonKey(ignore: true)
-  _$$_ManualLocationStateCopyWith<_$_ManualLocationState> get copyWith =>
+  _$$ManualLocationStateImplCopyWith<_$ManualLocationStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
