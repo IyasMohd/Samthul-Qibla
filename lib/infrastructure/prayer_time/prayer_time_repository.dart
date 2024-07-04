@@ -31,7 +31,7 @@ class PrayerTimeRepository implements PrayerTimeService {
     })).toList();
 
     final mailAvval = list[0].sunDeclination;
-    // print(mailAvval);
+    print(mailAvval);
     const isMailAvvalDirectionNorth = false;
     const thoolMouliulIyar = 82.5;
     //Ephemeris transit>>

@@ -100,7 +100,7 @@ class DashBoard extends StatelessWidget {
               GestureDetector(
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: ((context) => NamazTime()),
+                    builder: ((context) => PrayerTime()),
                   ),
                 ),
                 child: DashBoardListContainer(
