@@ -9,18 +9,20 @@ part 'prayer_time_bloc.freezed.dart';
 part 'prayer_time_event.dart';
 part 'prayer_time_state.dart';
 
-@ injectable
+@injectable
 class PrayerTimeBloc extends Bloc<PrayerTimeEvent, PrayerTimeState> {
   final PrayerTimeService prayerTimeService;
   PrayerTimeBloc(this.prayerTimeService) : super(PrayerTimeState.initial()) {
-    on(Initialize) => ((event, emit) async {
-          emit(
-            state.copyWith(
-              isLoading: true,
-              isError: false,
-            ),
-          );
+    print('onBloc');
+    on<Initialize>((event, emit) async {
+                emit(
+                  state.copyWith(
+                    isLoading: true,
+                    isError: false,
+                  ),
+                );
           final PrayerTimeModel result = await prayerTimeService.initialize();
+         
 
           emit(
             state.copyWith(

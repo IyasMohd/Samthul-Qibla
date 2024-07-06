@@ -24,7 +24,7 @@ class PrayerTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    
+    BlocProvider.of<PrayerTimeBloc>(context).add(Initialize());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -66,29 +66,33 @@ class PrayerTime extends StatelessWidget {
                 height: 200.h,
                 decoration: BoxDecoration(color: darkblue),
               ),
-              SafeArea(
-                child: Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Zuhar',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+              BlocBuilder<PrayerTimeBloc, PrayerTimeState>(
+                builder: (context, state) {
+                  return SafeArea(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            'Zuhar',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 17.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          20.verticalSpace,
+                          Text(
+                            convertTime(state.value.zuhrTime),
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 30.sp,
+                            ),
+                          ),
+                        ],
                       ),
-                      20.verticalSpace,
-                      Text(
-                        time,
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 30.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               )
             ],
           ),

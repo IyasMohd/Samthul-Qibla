@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<ManualLocationBloc>(),
         ),
-        BlocProvider(create: (context) => getIt<PrayerTimeBloc>()
+        BlocProvider(
+          create: (context) => getIt<PrayerTimeBloc>(),
         )
       ],
       child: ScreenUtilInit(

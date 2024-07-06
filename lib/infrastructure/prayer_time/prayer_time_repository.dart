@@ -4,16 +4,15 @@ import 'dart:math';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
-import 'package:samthul_qibla/domain/prayer_time/model/from_json/from_json.dart';
 import 'package:samthul_qibla/domain/prayer_time/model/prayer_time_model.dart';
 import 'package:samthul_qibla/domain/prayer_time/prayer_time_service.dart';
-
 
 @LazySingleton(as: PrayerTimeService)
 class PrayerTimeRepository implements PrayerTimeService {
   @override
-  Future<PrayerTimeModel> initialize() {
-    final model = namazTime();
+  Future<PrayerTimeModel> initialize() async {
+    final model = await namazTime();
+    // print(model.toString());
     return model;
   }
 
@@ -22,31 +21,36 @@ class PrayerTimeRepository implements PrayerTimeService {
     const aralulBalad = 11.86666667;
     const isAralulBaladDirectionNorth = true;
     const thoolulBalad = 75.41666667;
+
     //Sun Declination>>
     String data = await rootBundle
         .loadString("lib/assets/json/declination-etransit.json");
     final jsonResult = jsonDecode(data);
-    final list = (jsonResult as List).map(((e) {
-      return DeclinationAndTransit.fromJson(e);
-    })).toList();
+    
 
-    final mailAvval = list[0].sunDeclination;
-    print(mailAvval);
+    final mailAvval =
+        jsonResult[0]["Year 1"]["Month 1"]["Day 1"]["Sun Declination"];
+    // print(mailAvval);
     const isMailAvvalDirectionNorth = false;
     const thoolMouliulIyar = 82.5;
+
     //Ephemeris transit>>
     //convert String to DateTime
-    String dateString = list[0].ephemerisTransit;
-    String dateWithT =
-        '${dateString.substring(0, 8)}T${dateString.substring(8)}';
-    DateTime dateTime = DateTime.parse(dateWithT);
+    String dateString =
+        jsonResult[0]["Year 1"]["Month 1"]["Day 1"]["E-Transit"];
+    print(dateString);
+    
+    DateTime dateTime = DateTime.parse(dateString);
+    print(dateTime);
     final String hour = DateFormat.H().format(dateTime);
     final String minute = DateFormat.m().format(dateTime);
     final String second = DateFormat.s().format(dateTime);
-
     final timeDecimal = convertTimetoDecimal(hour, minute, second);
+   
+
+// ZUHAR >>
+
     final vaqthzavalMouliu = timeDecimal;
-    // print(vaqthzavalMouliu);
     final jaibulAral = sin(aralulBalad * (pi / 180.0));
     final jaibulMail = sin(mailAvval * (pi / 180.0));
     final buadulQuthr = jaibulAral * jaibulMail;
@@ -63,7 +67,10 @@ class PrayerTimeRepository implements PrayerTimeService {
     final zuharTime = zuhar(thoolMouliulIyar, thoolulBalad, vaqthzavalMouliu,
         hissathuMabainathoolaini);
     // print(zuharTime);
-    final zuhrTimeConverted = converDecimalToDateTime(zuharTime);
+    final zuhrTimeConverted = convertDecimalToDateTime(zuharTime);
+    // print(zuhrTimeConverted);
+
+//ASR SHAFIEE>>
 
     final isAralandMailSameDirectionBool = isAralandMailSameDirection(
       isMailAvvalDirectionNorth,
@@ -93,8 +100,10 @@ class PrayerTimeRepository implements PrayerTimeService {
     final hissathuDairathubainalAsriVaZuhr = dairathubainalAsriVaZuhr / 15;
     // print(hissathuDairathubainalAsriVaZuhr);
     final asruShafiee = zuharTime + hissathuDairathubainalAsriVaZuhr;
-    // print(asruShafiee);
-    final asruShafieeConverted = converDecimalToDateTime(asruShafiee);
+    final asruShafieeConverted = convertDecimalToDateTime(asruShafiee);
+    // print(asruShafieeConverted);
+
+//MAGRIB >>
 
     final dairathunBainalAsriValMagribi = getDairathunBainalAsriValMagribi(
         isAralandMailSameDirectionBool, qousulKharij, nisfulFazla);
@@ -106,8 +115,10 @@ class PrayerTimeRepository implements PrayerTimeService {
         hissathuDairathubainalAsriVaZuhr +
         hissthudairathunBainalAsriValMagribi +
         (4 / 60);
-    // print(magribTime);
-    final magribTimeConverted = converDecimalToDateTime(magribTime);
+    final magribTimeConverted = convertDecimalToDateTime(magribTime);
+    // print(magribTimeConverted);
+
+//THULOOA >>
 
     final zilluAsrilHanafee = zilluGaythulIrthifa + 2;
     final irthifaZilluAsrilHanafe = atan(1 / zilluAsrilHanafee) * (180 / pi);
@@ -129,8 +140,10 @@ class PrayerTimeRepository implements PrayerTimeService {
         (hissathuDairathubainalAsriVaZuhr +
             hissthudairathunBainalAsriValMagribi +
             (4 / 60));
-    // print(thulooaTime);
-    final thulooaTimeConverted = converDecimalToDateTime(thulooaTime);
+    final thulooaTimeConverted = convertDecimalToDateTime(thulooaTime);
+    // print(thulooaTimeConverted);
+
+// ISHAU SHAFIEE >>
 
     final asluMuaddalIndaShafaqi =
         getAsluMuaddalIndaShafaqi(isAralandMailSameDirectionBool, buadulQuthr);
@@ -156,7 +169,10 @@ class PrayerTimeRepository implements PrayerTimeService {
         hissathuShafaq;
 
     // print(ishauShafiee);
-    final ishauShafieeConverted = converDecimalToDateTime(ishauShafiee);
+    final ishauShafieeConverted = convertDecimalToDateTime(ishauShafiee);
+    // print(ishauShafieeConverted);
+
+// SUBH >>
 
     final asluMuaddalIndalFajri =
         getAsluMuaddalIndalFajri(isAralandMailSameDirectionBool, buadulQuthr);
@@ -178,7 +194,8 @@ class PrayerTimeRepository implements PrayerTimeService {
         hissathulFajr;
     // print(ishauHanafee);
     final subh = thulooaTime - hissathulFajr;
-    final subhTimeConverted = converDecimalToDateTime(subh);
+    final subhTimeConverted = convertDecimalToDateTime(subh);
+
     final model = PrayerTimeModel(
       zuhrTimeConverted,
       asruShafieeConverted,
@@ -189,7 +206,7 @@ class PrayerTimeRepository implements PrayerTimeService {
     return model;
   }
 
-  DateTime converDecimalToDateTime(double decimalTime) {
+  DateTime convertDecimalToDateTime(double decimalTime) {
     final hour = decimalTime.toInt().abs();
 
     final hourAfterDecimal = decimalTime - hour;
@@ -198,12 +215,22 @@ class PrayerTimeRepository implements PrayerTimeService {
     final minuteRounded = minute.toInt();
     final second = minute - minuteRounded;
     final secondCalculated = second * 60;
-    final secondRounded = double.parse(secondCalculated.toStringAsFixed(0));
+    final secondRounded = double.parse(
+      secondCalculated.toStringAsFixed(0),
+    );
+    String hourString =
+        hour.toString().length == 1 ? '0$hour' : hour.toString();
 
-    String dateString = '00000000$hourAfterDecimal$minuteRounded$secondRounded';
-    String dateWithT =
-        '${dateString.substring(0, 8)}T${dateString.substring(8)}';
-    DateTime dateTime = DateTime.parse(dateWithT);
+    String secondToInt = secondRounded.toInt().toString();
+    String secondString =
+        secondToInt.length == 1 ? '${secondToInt}0.0' : '$secondToInt.0';
+
+    String dateString = '0000-00-00 $hourString:$minuteRounded:$secondString';
+    // print(dateString);
+    // String dateWithT = '${dateString.substring(8)}';
+    // print(dateWithT);
+    DateTime dateTime = DateTime.parse(dateString);
+    // print('on Function $dateTime');
     return dateTime;
   }
 
