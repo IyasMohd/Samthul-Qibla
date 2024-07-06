@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:flutter/services.dart' show rootBundle;
@@ -18,6 +19,16 @@ class PrayerTimeRepository implements PrayerTimeService {
 
   Future<PrayerTimeModel> namazTime() async {
     final DateTime date = DateTime.now();
+
+    // Get Year No.>>
+    final String year = DateFormat("yyyy").format(date);
+    final int yearParsed = int.parse(year) % 4;
+    final yearNo = yearParsed + 1;
+// Get Month No.>>
+    final String month = DateFormat("M").format(date);
+
+    // Get Day No.
+    final String day = DateFormat("d").format(date);
     const aralulBalad = 11.86666667;
     const isAralulBaladDirectionNorth = true;
     const thoolulBalad = 75.41666667;
@@ -26,27 +37,22 @@ class PrayerTimeRepository implements PrayerTimeService {
     String data = await rootBundle
         .loadString("lib/assets/json/declination-etransit.json");
     final jsonResult = jsonDecode(data);
-    
 
     final mailAvval =
-        jsonResult[0]["Year 1"]["Month 1"]["Day 1"]["Sun Declination"];
-    // print(mailAvval);
+        jsonResult[0]["Year $yearNo"]["Month $month"]["Day $day"]["Sun Declination"];
     const isMailAvvalDirectionNorth = false;
     const thoolMouliulIyar = 82.5;
 
     //Ephemeris transit>>
     //convert String to DateTime
     String dateString =
-        jsonResult[0]["Year 1"]["Month 1"]["Day 1"]["E-Transit"];
-    print(dateString);
-    
+        jsonResult[0]["Year $yearNo"]["Month $month"]["Day $day"]["E-Transit"];
+
     DateTime dateTime = DateTime.parse(dateString);
-    print(dateTime);
     final String hour = DateFormat.H().format(dateTime);
     final String minute = DateFormat.m().format(dateTime);
     final String second = DateFormat.s().format(dateTime);
     final timeDecimal = convertTimetoDecimal(hour, minute, second);
-   
 
 // ZUHAR >>
 
@@ -141,7 +147,7 @@ class PrayerTimeRepository implements PrayerTimeService {
             hissthudairathunBainalAsriValMagribi +
             (4 / 60));
     final thulooaTimeConverted = convertDecimalToDateTime(thulooaTime);
-    // print(thulooaTimeConverted);
+    print(thulooaTimeConverted);
 
 // ISHAU SHAFIEE >>
 
@@ -408,4 +414,8 @@ class PrayerTimeRepository implements PrayerTimeService {
       return nisfulFazla - qousuKharijuQismathiAsluMuaddalFajri;
     }
   }
+
+
+
+
 }
