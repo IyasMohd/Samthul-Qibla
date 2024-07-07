@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:math';
 
 import 'package:flutter/services.dart' show rootBundle;
@@ -7,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:samthul_qibla/domain/prayer_time/model/prayer_time_model.dart';
 import 'package:samthul_qibla/domain/prayer_time/prayer_time_service.dart';
+import 'package:samthul_qibla/presentation/prayer_time/prayer_time.dart';
 
 @LazySingleton(as: PrayerTimeService)
 class PrayerTimeRepository implements PrayerTimeService {
@@ -18,7 +18,7 @@ class PrayerTimeRepository implements PrayerTimeService {
   }
 
   Future<PrayerTimeModel> namazTime() async {
-    final DateTime date = DateTime.now();
+    final DateTime date = dateNotifier.value;
 
     // Get Year No.>>
     final String year = DateFormat("yyyy").format(date);
@@ -38,8 +38,8 @@ class PrayerTimeRepository implements PrayerTimeService {
         .loadString("lib/assets/json/declination-etransit.json");
     final jsonResult = jsonDecode(data);
 
-    final mailAvval =
-        jsonResult[0]["Year $yearNo"]["Month $month"]["Day $day"]["Sun Declination"];
+    final mailAvval = jsonResult[0]["Year $yearNo"]["Month $month"]["Day $day"]
+        ["Sun Declination"];
     const isMailAvvalDirectionNorth = false;
     const thoolMouliulIyar = 82.5;
 
@@ -202,7 +202,19 @@ class PrayerTimeRepository implements PrayerTimeService {
     final subh = thulooaTime - hissathulFajr;
     final subhTimeConverted = convertDecimalToDateTime(subh);
 
+    final upcomingVaqthMap = getUpcomingVaqthandTime(
+        zuhrTimeConverted,
+        asruShafieeConverted,
+        magribTimeConverted,
+        ishauShafieeConverted,
+        subhTimeConverted,
+        date);
+    final upcomingVaqthName = upcomingVaqthMap["Vaqth"];
+    final upcomingVaqthTime = upcomingVaqthMap["DateTime"];
+
     final model = PrayerTimeModel(
+      upcomingVaqthName,
+      upcomingVaqthTime,
       zuhrTimeConverted,
       asruShafieeConverted,
       magribTimeConverted,
@@ -230,8 +242,15 @@ class PrayerTimeRepository implements PrayerTimeService {
     String secondToInt = secondRounded.toInt().toString();
     String secondString =
         secondToInt.length == 1 ? '${secondToInt}0.0' : '$secondToInt.0';
+    String year = DateTime.now().year.toString();
+    String month = DateTime.now().month.toString();
+    String day = DateTime.now().day.toString();
 
-    String dateString = '0000-00-00 $hourString:$minuteRounded:$secondString';
+    String monthString = month.length == 1 ? '0$month' : month;
+    String dayString = day.length == 1 ? '0$day' : day;
+
+    String dateString =
+        '$year-$monthString-$dayString $hourString:$minuteRounded:$secondString';
     // print(dateString);
     // String dateWithT = '${dateString.substring(8)}';
     // print(dateWithT);
@@ -415,7 +434,22 @@ class PrayerTimeRepository implements PrayerTimeService {
     }
   }
 
-
-
-
+  Map<String, dynamic> getUpcomingVaqthandTime(DateTime zuhr, DateTime asr,
+      DateTime magrib, DateTime isha, DateTime subh, DateTime currentTime) {
+    if (currentTime.isAfter(subh)) {
+      if (currentTime.isBefore(zuhr)) {
+        return {"Vaqth": "Zuhr", "DateTime": zuhr};
+      } else if (currentTime.isBefore(asr)) {
+        return {"Vaqth": "Asr", "DateTime": asr};
+      } else if (currentTime.isBefore(magrib)) {
+        return {"Vaqth": "Magrib", "DateTime": magrib};
+      } else if (currentTime.isBefore(isha)) {
+        return {"Vaqth": "Isha", "DateTime": isha};
+      } else {
+        return {"Vaqth": "Subh", "DateTime": subh};
+      }
+    } else {
+      return {"Vaqth": "Subh", "DateTime": subh};
+    }
+  }
 }

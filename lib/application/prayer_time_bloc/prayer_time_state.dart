@@ -9,6 +9,8 @@ class PrayerTimeState with _$PrayerTimeState {
   }) = _PrayerTimeState;
   factory PrayerTimeState.initial() {
      final initialState = PrayerTimeModel(
+      "Zuhr",
+      DateTime.now(),
       DateTime.now(),
       DateTime.now(),
       DateTime.now(),

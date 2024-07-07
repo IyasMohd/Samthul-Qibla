@@ -9,10 +9,14 @@ import 'package:samthul_qibla/presentation/prayer_time/widgets/settings/settings
 
 import '../../application/prayer_time_bloc/prayer_time_bloc.dart';
 
+
+
+  ValueNotifier<DateTime> dateNotifier = ValueNotifier(DateTime.now());
+
+
 class PrayerTime extends StatelessWidget {
   PrayerTime({Key? key}) : super(key: key);
 
-  ValueNotifier<DateTime> dateNotifier = ValueNotifier(DateTime.now());
 
   String time = DateFormat.jm().format(DateTime.now()).toLowerCase();
 
@@ -23,8 +27,9 @@ class PrayerTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     BlocProvider.of<PrayerTimeBloc>(context).add(Initialize());
+    dateNotifier.value =
+                      DateTime.now();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -73,7 +78,7 @@ class PrayerTime extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            'Zuhar',
+                            state.value.upcomingVaqth,
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontSize: 17.sp,
@@ -82,7 +87,7 @@ class PrayerTime extends StatelessWidget {
                           ),
                           20.verticalSpace,
                           Text(
-                            convertTime(state.value.zuhrTime),
+                            convertTime(state.value.upcomingVaqthTime),
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontSize: 30.sp,

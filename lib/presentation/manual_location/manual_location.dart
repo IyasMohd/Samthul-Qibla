@@ -65,6 +65,7 @@ class ManualLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<ManualLocationBloc>(context)
         .add(const ManualLocationEvent.refreshUI());
+        
     return Scaffold(
       backgroundColor: backGround,
       resizeToAvoidBottomInset: false,

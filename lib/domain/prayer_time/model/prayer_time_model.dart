@@ -1,6 +1,6 @@
 class PrayerTimeModel {
-  // final String upcomingVaqth;
-  // final String upcomingVaqthTime;
+  final String upcomingVaqth;
+  final DateTime upcomingVaqthTime;
   final DateTime zuhrTime;
   final DateTime asrTime;
   final DateTime magribTime;
@@ -8,8 +8,8 @@ class PrayerTimeModel {
   final DateTime subhTime;
 
   PrayerTimeModel(
-    // this.upcomingVaqth,
-    // this.upcomingVaqthTime,
+    this.upcomingVaqth,
+    this.upcomingVaqthTime,
     this.zuhrTime,
     this.asrTime,
     this.magribTime,
