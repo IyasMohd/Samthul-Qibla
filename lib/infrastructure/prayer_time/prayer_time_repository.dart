@@ -126,21 +126,7 @@ class PrayerTimeRepository implements PrayerTimeService {
 
 //THULOOA >>
 
-    final zilluAsrilHanafee = zilluGaythulIrthifa + 2;
-    final irthifaZilluAsrilHanafe = atan(1 / zilluAsrilHanafee) * (180 / pi);
-    // print(irthifaZilluAsrilHanafe);
-    final jaibuIrthifaZilluAsrilHanafee =
-        sin(irthifaZilluAsrilHanafe * (pi / 180));
 
-    final asluMuaddalulHanafee = getAsluMuaddalulHanafee(
-        isAralandMailSameDirectionBool,
-        buadulQuthr,
-        jaibuIrthifaZilluAsrilHanafee);
-    // print(asluMuaddalulHanafee);
-    final kharijulQismathulHanafee = asluMuaddalulHanafee / aslMuthlaq;
-    final qousuKharijulQismathulHanafee =
-        asin(kharijulQismathulHanafee) * (180 / pi);
-    // print(qousuKharijulQismathulHanafee);
 
     final thulooaTime = zuharTime -
         (hissathuDairathubainalAsriVaZuhr +
@@ -198,7 +184,7 @@ class PrayerTimeRepository implements PrayerTimeService {
         hissthudairathunBainalAsriValMagribi +
         (4 / 60) +
         hissathulFajr;
-    // print(ishauHanafee);
+    print(ishauHanafee);
     final subh = thulooaTime - hissathulFajr;
     final subhTimeConverted = convertDecimalToDateTime(subh);
 
